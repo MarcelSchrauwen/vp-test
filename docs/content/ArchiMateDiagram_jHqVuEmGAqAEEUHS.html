@@ -1,0 +1,290 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>ArchiMate Diagram - Zorgverlening - Verzorging (GGz)</title>
+	<META name="Description" content="Dit domein bevat de activiteiten op het gebied van het verzorgen van de patiënt en het bieden van zorgondersteunende (klinische) diensten."/>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		Testproject	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p>
+<a href="Model_Bs1auEmGAqAEEQxe.html" class="PageParentTitle">Generieke architectuur : Model</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_Hfb6uEmGAqAEEQxu.html" class="PageParentTitle">Architectuur : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_G_HTuEmGAqAEEVGm.html" class="PageParentTitle">Business architectuur : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_ap_AeEmGAqAEETJy.html" class="PageParentTitle">Geestelijke gezondheidszorg : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_ez1OuEmGAqAEET5B.html" class="PageParentTitle">Zorgprocessen - Geestelijke gezondheidszorg : Package</a>	</p>
+	<p class="PageTitle">
+<a href="ArchiMateBusinessFunction_DkqVuEmGAqAEET_A.html"><img style="border: 1px solid #C0C0C0; " src="../images/icons/Breadcrumb_JumpToDiagram.png" alt="Referenced by Verzorging"/></a>		<span id="PageTitleText">
+			ArchiMate Diagram - Zorgverlening - Verzorging (GGz)		</span>
+<a onclick="javascript: showVpLink('Testproject.vpp://diagram/jHqVuEmGAqAEEUHS', 'Zorgverlening - Verzorging (GGz)\nTestproject.vpp://diagram/jHqVuEmGAqAEEUHS', 'Zorgverlening - Verzorging (GGz)', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|48.0|74.0|120.0|80.0|ArchiMateBusinessProcess_8LKVuEmGAqAEET7c.html|ArchiMateBusinessProcess_8LKVuEmGAqAEET7c.html|vHqVuEmGAqAEEUHY" id="optionvHqVuEmGAqAEEUHY">Verzorgen patiënt : Business Process</option>
+<option value="shape|182.0|74.0|120.0|80.0|ArchiMateBusinessProcess_DNKVuEmGAqAEET60.html|ArchiMateBusinessProcess_DNKVuEmGAqAEET60.html|vHqVuEmGAqAEEUHa" id="optionvHqVuEmGAqAEEUHa">Verlenen welzijnsdiensten : Business Process</option>
+<option value="shape|446.0|74.0|120.0|80.0|ArchiMateBusinessProcess_iHKVuEmGAqAEET78.html|ArchiMateBusinessProcess_iHKVuEmGAqAEET78.html|fHqVuEmGAqAEEUHc" id="optionfHqVuEmGAqAEEUHc">Verlenen zorgwoondiensten : Business Process</option>
+<option value="shape|314.0|74.0|120.0|80.0|ArchiMateBusinessProcess_arKVuEmGAqAEET7l.html|ArchiMateBusinessProcess_arKVuEmGAqAEET7l.html|fHqVuEmGAqAEEUHe" id="optionfHqVuEmGAqAEEUHe">Verlenen woondiensten : Business Process</option>
+<option value="shape|182.0|170.0|120.0|80.0|ArchiMateBusinessObject_3_KVuEmGAqAEET82.html|ArchiMateBusinessObject_3_KVuEmGAqAEET82.html|_HqVuEmGAqAEEUHg" id="option_HqVuEmGAqAEEUHg">Service aanvraag : Business Object</option>
+<option value="shape|48.0|170.0|120.0|80.0|ArchiMateBusinessObject_uQqVuEmGAqAEET9I.html|ArchiMateBusinessObject_uQqVuEmGAqAEET9I.html|_HqVuEmGAqAEEUHi" id="option_HqVuEmGAqAEEUHi">Verpleegkundig dossier : Business Object</option>
+<option value="shape|26.0|38.0|565.0|253.0|ArchiMateBusinessFunction_DkqVuEmGAqAEET_A.html|ArchiMateBusinessFunction_DkqVuEmGAqAEET_A.html|PHqVuEmGAqAEEUHW" id="optionPHqVuEmGAqAEEUHW">Verzorging : Business Function</option>
+<option value="shape|2.0|2.0|610.0|313.0|ArchiMateGrouping_MMqVuEmGAqAEET_S.html|ArchiMateGrouping_MMqVuEmGAqAEET_S.html|PHqVuEmGAqAEEUHU" id="optionPHqVuEmGAqAEEUHU">Referentie Domeinmodel Geestelijkegezondheidszorg v1.0 : Grouping</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/Zorgverlening_Verzorging_GGz.png" usemap="#diagram_map" class="Image" width="616" height="319"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="-22, -34, 78, 66" coords2="-22, -34, 78, 66" shape="rect" alt=":Composition" id="areadiagram_map_4IaVuEmGAqAEEUTK_default" href="ArchiMateComposition_BpqVuEmGAqAEEUBY.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -34, 78, 66" coords2="-22, -34, 78, 66" shape="rect" alt=":Composition" id="areadiagram_map_4IaVuEmGAqAEEUTM_default" href="ArchiMateComposition_vpqVuEmGAqAEEUBb.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -34, 78, 66" coords2="-22, -34, 78, 66" shape="rect" alt=":Composition" id="areadiagram_map_4IaVuEmGAqAEEUTO_default" href="ArchiMateComposition_9xqVuEmGAqAEEUBK.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -34, 78, 66" coords2="-22, -34, 78, 66" shape="rect" alt=":Access" id="areadiagram_map_4IaVuEmGAqAEEUTQ_default" href="ArchiMateAccess_1mqVuEmGAqAEET_9.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -34, 78, 66" coords2="-22, -34, 78, 66" shape="rect" alt=":Composition" id="areadiagram_map_4IaVuEmGAqAEEUTS_default" href="ArchiMateComposition_4VqVuEmGAqAEEUB5.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -34, 78, 66" coords2="-22, -34, 78, 66" shape="rect" alt=":Access" id="areadiagram_map_4IaVuEmGAqAEEUTU_default" href="ArchiMateAccess_ImqVuEmGAqAEET_4.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -34, 78, 66" coords2="-22, -34, 78, 66" shape="rect" alt=":Composition" id="areadiagram_map_4IaVuEmGAqAEEUTW_default" href="ArchiMateComposition_UlqVuEmGAqAEEUBy.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Omvat persoonlijke verzorging, hulp bij eten, wondverzorging, observatie, 
+    rapportage en gespecialiseerde zorg. Hierbij kan ook hulp op 
+    maatschappelijke terreinen horen (inclusief maatschappelijk werk).
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="48, 74, 168, 154" coords2="48, 74, 168, 154" shape="rect" alt="Verzorgen patiënt:Business Process" id="areadiagram_map_vHqVuEmGAqAEEUHY_default" href="ArchiMateBusinessProcess_8LKVuEmGAqAEET7c.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Verlenen en administratief vastleggen van een gewenste welzijnsdienst. 
+    Welzijnsdiensten: hieronder verstaan we diensten die bijdragen aan het 
+    welbevinden van mensen in lichamelijk en geestelijk opzicht. Het kan gaan 
+    om hulp bij het verbeteren van de lichamelijke situatie (bv. coaching op 
+    het gebied van beweging en voeding), maar ook om het verbeteren van de 
+    sociale contacten.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="182, 74, 302, 154" coords2="182, 74, 302, 154" shape="rect" alt="Verlenen welzijnsdiensten:Business Process" id="areadiagram_map_vHqVuEmGAqAEEUHa_default" href="ArchiMateBusinessProcess_DNKVuEmGAqAEET60.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Verlenen en administratief vastleggen van een gewenste individuele 
+    zorggerelateerde woondienst zoals maaltijden (voeding), domotica en 
+    mobiliteitsmiddelen. Omvat ook het verbeteren van bestaande diensten en 
+    het afhandelen van storingen. Zorgwoondiensten kunnen betrekking hebben op 
+    zowel de intramurale als de extramurale setting.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="446, 74, 566, 154" coords2="446, 74, 566, 154" shape="rect" alt="Verlenen zorgwoondiensten:Business Process" id="areadiagram_map_fHqVuEmGAqAEEUHc_default" href="ArchiMateBusinessProcess_iHKVuEmGAqAEET78.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Verlenen en administratief vastleggen van een gewenste individuele en 
+    algemene gemakswoondienst zoals catering, parkeergelegenheid, ruimtes en 
+    telecomfaciliteiten. Omvat ook het verbeteren van bestaande diensten en 
+    het afhandelen van storingen. Woondiensten kunnen betrekking hebben op 
+    zowel de intramurale als de extramurale setting.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="314, 74, 434, 154" coords2="314, 74, 434, 154" shape="rect" alt="Verlenen woondiensten:Business Process" id="areadiagram_map_fHqVuEmGAqAEEUHe_default" href="ArchiMateBusinessProcess_arKVuEmGAqAEET7l.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    &amp;quot;Diensten of producten die worden aangeboden vanwege een zorginhoudelijk 
+    argument. Gemaksdiensten: hiermee bedoelen we diensten op het gebied van 
+    praktische en/of huishoudelijke zaken, niet specifiek gericht op mensen 
+    met een verminderde mobiliteit of zelfredzaamheid, maar in principe 
+    gericht op iedereen die hiervan voordeel heeft. Welzijnsdiensten: 
+    hieronder verstaan we diensten die bijdragen aan het welbevinden van 
+    mensen in lichamelijk en geestelijk opzicht. Het kan gaan om hulp bij het 
+    verbeteren van de lichamelijke situatie (bv. coaching op het gebied van 
+    beweging en voeding), maar ook om het verbeteren van de sociale contacten. 
+    Veiligheid en bewaking: hieronder verstaan we diensten die bijdragen aan 
+    het veiligheidsgevoel van mensen, doordat ze bijvoorbeeld in geval van 
+    nood makkelijker iemand kunnen waarschuwen. Behandeling en verzorging: 
+    hiermee bedoelen we diensten die te maken hebben met medische begeleiding 
+    en/of bevorderen van zelfmanagement door pati&amp;#235;nten, zoals het doen van 
+    thuismetingen.&amp;quot;
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="182, 170, 302, 250" coords2="182, 170, 302, 250" shape="rect" alt="Service aanvraag:Business Object" id="areadiagram_map__HqVuEmGAqAEEUHg_default" href="ArchiMateBusinessObject_3_KVuEmGAqAEET82.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dossier waarin informatie over verpleegkundig handelen m.b.t. een pati&amp;#235;nt 
+    wordt opgeslagen.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="48, 170, 168, 250" coords2="48, 170, 168, 250" shape="rect" alt="Verpleegkundig dossier:Business Object" id="areadiagram_map__HqVuEmGAqAEEUHi_default" href="ArchiMateBusinessObject_uQqVuEmGAqAEET9I.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten op het gebied van het verzorgen van de 
+    pati&amp;#235;nt en het bieden van zorgondersteunende (klinische) diensten.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="26, 38, 591, 291" coords2="26, 38, 591, 291" shape="rect" alt="Verzorging:Business Function" id="areadiagram_map_PHqVuEmGAqAEEUHW_default" href="ArchiMateBusinessFunction_DkqVuEmGAqAEET_A.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','26, 38, 591, 291',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_jHqVuEmGAqAEEUHS.html/Zorgverlening - Verzorging (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '26, 38, 591, 291'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="2, 2, 612, 315" coords2="2, 2, 612, 315" shape="rect" alt="Referentie Domeinmodel Geestelijkegezondheidszorg v1.0:Grouping" id="areadiagram_map_PHqVuEmGAqAEEUHU_default" href="ArchiMateGrouping_MMqVuEmGAqAEET_S.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<p>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0">
+			<tr>
+				<td>
+<span class="TableContent Documentation"><html>
+  <head>
+    
+  </head>
+  <body>
+    Dit domein bevat de activiteiten op het gebied van het verzorgen van de 
+    pati&#235;nt en het bieden van zorgondersteunende (klinische) diensten.
+  </body>
+</html>
+</span>				</td>
+			</tr>
+		</table>
+	</p>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		Testproject	</div>
+</body>
+</html>

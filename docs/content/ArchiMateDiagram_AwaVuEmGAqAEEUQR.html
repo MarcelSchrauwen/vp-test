@@ -1,0 +1,256 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>ArchiMate Diagram - Sturing en verantwoording - Verantwoording (GGz)</title>
+	<META name="Description" content="Dit domein bevat de activiteiten gericht op de verantwoording van de organisatie aan de omgeving."/>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		Testproject	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p>
+<a href="Model_Bs1auEmGAqAEEQxe.html" class="PageParentTitle">Generieke architectuur : Model</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_Hfb6uEmGAqAEEQxu.html" class="PageParentTitle">Architectuur : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_G_HTuEmGAqAEEVGm.html" class="PageParentTitle">Business architectuur : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_ap_AeEmGAqAEETJy.html" class="PageParentTitle">Geestelijke gezondheidszorg : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_ez1OuEmGAqAEET5B.html" class="PageParentTitle">Zorgprocessen - Geestelijke gezondheidszorg : Package</a>	</p>
+	<p class="PageTitle">
+<a href="ArchiMateBusinessFunction_u0qVuEmGAqAEET_N.html"><img style="border: 1px solid #C0C0C0; " src="../images/icons/Breadcrumb_JumpToDiagram.png" alt="Referenced by Verantwoording"/></a>		<span id="PageTitleText">
+			ArchiMate Diagram - Sturing en verantwoording - Verantwoording (GGz)		</span>
+<a onclick="javascript: showVpLink('Testproject.vpp://diagram/AwaVuEmGAqAEEUQR', 'Sturing en verantwoording - Verantwoording (GGz)\nTestproject.vpp://diagram/AwaVuEmGAqAEEUQR', 'Sturing en verantwoording - Verantwoording (GGz)', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|314.0|74.0|120.0|80.0|ArchiMateBusinessProcess_SdKVuEmGAqAEET6_.html|ArchiMateBusinessProcess_SdKVuEmGAqAEET6_.html|MwaVuEmGAqAEEUQX" id="optionMwaVuEmGAqAEEUQX">Maatschappelijke verantwoording afleggen : Business Process</option>
+<option value="shape|182.0|74.0|120.0|80.0|ArchiMateBusinessProcess_5tKVuEmGAqAEET66.html|ArchiMateBusinessProcess_5tKVuEmGAqAEET66.html|cwaVuEmGAqAEEUQZ" id="optioncwaVuEmGAqAEEUQZ">Controle op voldoen aan wetgeving en normen : Business Process</option>
+<option value="shape|45.0|74.0|120.0|80.0|ArchiMateBusinessProcess_i1KVuEmGAqAEET6o.html|ArchiMateBusinessProcess_i1KVuEmGAqAEET6o.html|cwaVuEmGAqAEEUQb" id="optioncwaVuEmGAqAEEUQb">Verantwoording KPI''s en productieafspraken : Business Process</option>
+<option value="shape|182.0|170.0|120.0|80.0|ArchiMateBusinessObject_IIqVuEmGAqAEET9V.html|ArchiMateBusinessObject_IIqVuEmGAqAEET9V.html|8waVuEmGAqAEEUQd" id="option8waVuEmGAqAEEUQd">Jaarverslag : Business Object</option>
+<option value="shape|49.0|170.0|120.0|80.0|ArchiMateBusinessObject_3QqVuEmGAqAEET9M.html|ArchiMateBusinessObject_3QqVuEmGAqAEET9M.html|CwaVuEmGAqAEEUQf" id="optionCwaVuEmGAqAEEUQf">Voortgangs rapportage : Business Object</option>
+<option value="shape|26.0|38.0|433.0|253.0|ArchiMateBusinessFunction_u0qVuEmGAqAEET_N.html|ArchiMateBusinessFunction_u0qVuEmGAqAEET_N.html|MwaVuEmGAqAEEUQV" id="optionMwaVuEmGAqAEEUQV">Verantwoording : Business Function</option>
+<option value="shape|2.0|2.0|481.0|313.0|ArchiMateGrouping_MMqVuEmGAqAEET_S.html|ArchiMateGrouping_MMqVuEmGAqAEET_S.html|0waVuEmGAqAEEUQT" id="option0waVuEmGAqAEEUQT">Referentie Domeinmodel Geestelijkegezondheidszorg v1.0 : Grouping</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/Sturing_en_verantwoording_Verantwoording_GGz.png" usemap="#diagram_map" class="Image" width="487" height="319"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="-22, -22, 78, 78" coords2="-22, -22, 78, 78" shape="rect" alt=":Composition" id="areadiagram_map_ZIaVuEmGAqAEEUZW_default" href="ArchiMateComposition__dqVuEmGAqAEEUCb.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -22, 78, 78" coords2="-22, -22, 78, 78" shape="rect" alt=":Composition" id="areadiagram_map_ZIaVuEmGAqAEEUZY_default" href="ArchiMateComposition_sJqVuEmGAqAEEUBO.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -22, 78, 78" coords2="-22, -22, 78, 78" shape="rect" alt=":Composition" id="areadiagram_map_ZIaVuEmGAqAEEUZa_default" href="ArchiMateComposition_P1qVuEmGAqAEEUCH.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -22, 78, 78" coords2="-22, -22, 78, 78" shape="rect" alt=":Access" id="areadiagram_map_ZIaVuEmGAqAEEUZc_default" href="ArchiMateAccess_fMqVuEmGAqAEET_Z.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -22, 78, 78" coords2="-22, -22, 78, 78" shape="rect" alt=":Access" id="areadiagram_map_ZIaVuEmGAqAEEUZe_default" href="ArchiMateAccess_YaqVuEmGAqAEET_i.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -22, 78, 78" coords2="-22, -22, 78, 78" shape="rect" alt=":Composition" id="areadiagram_map_ZIaVuEmGAqAEEUZg_default" href="ArchiMateComposition_mFqVuEmGAqAEEUBt.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Verantwoording afleggen over maatschappelijke onderwerpen zoals 
+    duurzaamheid, mobiliteit en bijdrage aan de maatschappij.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="314, 74, 434, 154" coords2="314, 74, 434, 154" shape="rect" alt="Maatschappelijke verantwoording afleggen:Business Process" id="areadiagram_map_MwaVuEmGAqAEEUQX_default" href="ArchiMateBusinessProcess_SdKVuEmGAqAEET6_.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Verantwoording afleggen over de mate waarin voldaan wordt aan wet- en 
+    regelgeving.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="182, 74, 302, 154" coords2="182, 74, 302, 154" shape="rect" alt="Controle op voldoen aan wetgeving en normen:Business Process" id="areadiagram_map_cwaVuEmGAqAEEUQZ_default" href="ArchiMateBusinessProcess_5tKVuEmGAqAEET66.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Verantwoording afleggen over de mate waarin voldaan wordt aan de opgelegde 
+    prestaties.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="45, 74, 165, 154" coords2="45, 74, 165, 154" shape="rect" alt="Verantwoording KPI''s en productieafspraken:Business Process" id="areadiagram_map_cwaVuEmGAqAEEUQb_default" href="ArchiMateBusinessProcess_i1KVuEmGAqAEET6o.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Schriftelijk verslag van een organisatie over de gang van zaken in het 
+    afgelopen boekjaar. Meestal wordt daarin ook iets gezegd over de 
+    vooruitzichten.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="182, 170, 302, 250" coords2="182, 170, 302, 250" shape="rect" alt="Jaarverslag:Business Object" id="areadiagram_map_8waVuEmGAqAEEUQd_default" href="ArchiMateBusinessObject_IIqVuEmGAqAEET9V.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    De voortgangsrapportage is een periodieke rapportage van een opdrachtnemer 
+    naar de opdrachtgever. De rapportage beschrijft de status en de voortgang 
+    van een bepaalde afspraak/opdracht.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="49, 170, 169, 250" coords2="49, 170, 169, 250" shape="rect" alt="Voortgangs rapportage:Business Object" id="areadiagram_map_CwaVuEmGAqAEEUQf_default" href="ArchiMateBusinessObject_3QqVuEmGAqAEET9M.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten gericht op de verantwoording van de 
+    organisatie aan de omgeving.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="26, 38, 459, 291" coords2="26, 38, 459, 291" shape="rect" alt="Verantwoording:Business Function" id="areadiagram_map_MwaVuEmGAqAEEUQV_default" href="ArchiMateBusinessFunction_u0qVuEmGAqAEET_N.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','26, 38, 459, 291',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_AwaVuEmGAqAEEUQR.html/Sturing en verantwoording - Verantwoording (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '26, 38, 459, 291'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="2, 2, 483, 315" coords2="2, 2, 483, 315" shape="rect" alt="Referentie Domeinmodel Geestelijkegezondheidszorg v1.0:Grouping" id="areadiagram_map_0waVuEmGAqAEEUQT_default" href="ArchiMateGrouping_MMqVuEmGAqAEET_S.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<p>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0">
+			<tr>
+				<td>
+<span class="TableContent Documentation"><html>
+  <head>
+    
+  </head>
+  <body>
+    Dit domein bevat de activiteiten gericht op de verantwoording van de 
+    organisatie aan de omgeving.
+  </body>
+</html>
+</span>				</td>
+			</tr>
+		</table>
+	</p>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		Testproject	</div>
+</body>
+</html>

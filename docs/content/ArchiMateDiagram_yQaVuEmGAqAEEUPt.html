@@ -1,0 +1,273 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>ArchiMate Diagram - Zorgverlening - Beëindigen zorg (GGz)</title>
+	<META name="Description" content="Dit domein bevat de activiteiten op het gebied van het beëindigen van de zorgrelatie en afsluiten van de behandeling door ontslag en/of overdracht in de keten."/>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		Testproject	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p>
+<a href="Model_Bs1auEmGAqAEEQxe.html" class="PageParentTitle">Generieke architectuur : Model</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_Hfb6uEmGAqAEEQxu.html" class="PageParentTitle">Architectuur : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_G_HTuEmGAqAEEVGm.html" class="PageParentTitle">Business architectuur : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_ap_AeEmGAqAEETJy.html" class="PageParentTitle">Geestelijke gezondheidszorg : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_ez1OuEmGAqAEET5B.html" class="PageParentTitle">Zorgprocessen - Geestelijke gezondheidszorg : Package</a>	</p>
+	<p class="PageTitle">
+<a href="ArchiMateBusinessFunction_fEqVuEmGAqAEET96.html"><img style="border: 1px solid #C0C0C0; " src="../images/icons/Breadcrumb_JumpToDiagram.png" alt="Referenced by Beëindigen zorg"/></a>		<span id="PageTitleText">
+			ArchiMate Diagram - Zorgverlening - Beëindigen zorg (GGz)		</span>
+<a onclick="javascript: showVpLink('Testproject.vpp://diagram/yQaVuEmGAqAEEUPt', 'Zorgverlening - Be&#xeb;indigen zorg (GGz)\nTestproject.vpp://diagram/yQaVuEmGAqAEEUPt', 'Zorgverlening - Be&#xeb;indigen zorg (GGz)', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|47.0|74.0|120.0|80.0|ArchiMateBusinessProcess_ddKVuEmGAqAEET7C.html|ArchiMateBusinessProcess_ddKVuEmGAqAEET7C.html|uQaVuEmGAqAEEUPz" id="optionuQaVuEmGAqAEEUPz">Ontslaan patiënt : Business Process</option>
+<option value="shape|314.0|74.0|120.0|80.0|ArchiMateBusinessProcess_JdKVuEmGAqAEET7B.html|ArchiMateBusinessProcess_JdKVuEmGAqAEET7B.html|.QaVuEmGAqAEEUP1" id="option.QaVuEmGAqAEEUP1">Evalueren zorg : Business Process</option>
+<option value="shape|182.0|74.0|120.0|80.0|ArchiMateBusinessProcess_zDKVuEmGAqAEET7Q.html|ArchiMateBusinessProcess_zDKVuEmGAqAEET7Q.html|.QaVuEmGAqAEEUP3" id="option.QaVuEmGAqAEEUP3">Vaststellen overlijden : Business Process</option>
+<option value="shape|47.0|170.0|120.0|80.0|ArchiMateBusinessObject_L3KVuEmGAqAEET8W.html|ArchiMateBusinessObject_L3KVuEmGAqAEET8W.html|BQaVuEmGAqAEEUP5" id="optionBQaVuEmGAqAEEUP5">Ontslag : Business Object</option>
+<option value="shape|182.0|170.0|120.0|80.0|ArchiMateBusinessObject_MvKVuEmGAqAEET8h.html|ArchiMateBusinessObject_MvKVuEmGAqAEET8h.html|BQaVuEmGAqAEEUP7" id="optionBQaVuEmGAqAEEUP7">Overlijdensakte : Business Object</option>
+<option value="shape|314.0|170.0|120.0|80.0|ArchiMateBusinessObject_hHKVuEmGAqAEET7_.html|ArchiMateBusinessObject_hHKVuEmGAqAEET7_.html|BQaVuEmGAqAEEUP9" id="optionBQaVuEmGAqAEEUP9">Nazorg : Business Object</option>
+<option value="shape|26.0|38.0|433.0|265.0|ArchiMateBusinessFunction_fEqVuEmGAqAEET96.html|ArchiMateBusinessFunction_fEqVuEmGAqAEET96.html|uQaVuEmGAqAEEUPx" id="optionuQaVuEmGAqAEEUPx">Beëindigen zorg : Business Function</option>
+<option value="shape|2.0|2.0|486.0|325.0|ArchiMateGrouping_MMqVuEmGAqAEET_S.html|ArchiMateGrouping_MMqVuEmGAqAEET_S.html|uQaVuEmGAqAEEUPv" id="optionuQaVuEmGAqAEEUPv">Referentie Domeinmodel Geestelijkegezondheidszorg v1.0 : Grouping</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/Zorgverlening_Beindigen_zorg_GGz.png" usemap="#diagram_map" class="Image" width="492" height="331"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="-22, -22, 78, 78" coords2="-22, -22, 78, 78" shape="rect" alt=":Composition" id="areadiagram_map_JIaVuEmGAqAEEUZA_default" href="ArchiMateComposition_kDqVuEmGAqAEEUCo.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -22, 78, 78" coords2="-22, -22, 78, 78" shape="rect" alt=":Composition" id="areadiagram_map_JIaVuEmGAqAEEUZC_default" href="ArchiMateComposition_8eqVuEmGAqAEEUAh.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -22, 78, 78" coords2="-22, -22, 78, 78" shape="rect" alt=":Composition" id="areadiagram_map_JIaVuEmGAqAEEUZE_default" href="ArchiMateComposition_L_qVuEmGAqAEEUAs.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -22, 78, 78" coords2="-22, -22, 78, 78" shape="rect" alt=":Access" id="areadiagram_map_JIaVuEmGAqAEEUZG_default" href="ArchiMateAccess_sSqVuEmGAqAEET_C.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -22, 78, 78" coords2="-22, -22, 78, 78" shape="rect" alt=":Access" id="areadiagram_map_JIaVuEmGAqAEEUZI_default" href="ArchiMateAccess_lWqVuEmGAqAEEUAF.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -22, 78, 78" coords2="-22, -22, 78, 78" shape="rect" alt=":Access" id="areadiagram_map_pIaVuEmGAqAEEUZK_default" href="ArchiMateAccess_s6qVuEmGAqAEET_q.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -22, 78, 78" coords2="-22, -22, 78, 78" shape="rect" alt=":Composition" id="areadiagram_map_pIaVuEmGAqAEEUZM_default" href="ArchiMateComposition_VZqVuEmGAqAEEUBg.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Be&amp;#235;indigen van zorgverlening door een zorgaanbieder. Ontslag kan samengaan 
+    met verwijzing/overplaatsing/overlijden. Hierbij wordt indien nodig ook 
+    aandacht besteed aan terugvalpreventie.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="47, 74, 167, 154" coords2="47, 74, 167, 154" shape="rect" alt="Ontslaan patiënt:Business Process" id="areadiagram_map_uQaVuEmGAqAEEUPz_default" href="ArchiMateBusinessProcess_ddKVuEmGAqAEET7C.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Na be&amp;#235;indigen zorg bespreken van verleende zorg om het geleverde resultaat 
+    te kunnen bepalen.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="314, 74, 434, 154" coords2="314, 74, 434, 154" shape="rect" alt="Evalueren zorg:Business Process" id="areadiagram_map_.QaVuEmGAqAEEUP1_default" href="ArchiMateBusinessProcess_JdKVuEmGAqAEET7B.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Vaststellen van het overlijden van een pati&amp;#235;nt en de verdere afhandeling 
+    van een sterfgeval.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="182, 74, 302, 154" coords2="182, 74, 302, 154" shape="rect" alt="Vaststellen overlijden:Business Process" id="areadiagram_map_.QaVuEmGAqAEEUP3_default" href="ArchiMateBusinessProcess_zDKVuEmGAqAEET7Q.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Van een ontslag wordt o.a. vastgelegd: datum, naam zorgverlener die 
+    ontslag verleent, type ontslag (naar thuissituatie, overplaatsing, 
+    verwijzing, overlijden).
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="47, 170, 167, 250" coords2="47, 170, 167, 250" shape="rect" alt="Ontslag:Business Object" id="areadiagram_map_BQaVuEmGAqAEEUP5_default" href="ArchiMateBusinessObject_L3KVuEmGAqAEET8W.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Door een arts afgegeven verklaring m.b.t. overlijden en doodsoorzaak, 
+    nodig voor melden van het overlijden van een persoon bij de burgerlijke 
+    stand van een gemeente.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="182, 170, 302, 250" coords2="182, 170, 302, 250" shape="rect" alt="Overlijdensakte:Business Object" id="areadiagram_map_BQaVuEmGAqAEEUP7_default" href="ArchiMateBusinessObject_MvKVuEmGAqAEET8h.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Afspraken die wordt gemaakt bij ontslag van een pati&amp;#235;nt tot verdere 
+    behandeling of zorgverlening in een andere setting (binnen de eigen 
+    instelling) of een andere instelling (bijv. thuiszorg), inclusief 
+    afspraken over terugvalpreventie.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="314, 170, 434, 250" coords2="314, 170, 434, 250" shape="rect" alt="Nazorg:Business Object" id="areadiagram_map_BQaVuEmGAqAEEUP9_default" href="ArchiMateBusinessObject_hHKVuEmGAqAEET7_.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten op het gebied van het be&amp;#235;indigen van de 
+    zorgrelatie en afsluiten van de behandeling door ontslag en/of overdracht 
+    in de keten.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="26, 38, 459, 303" coords2="26, 38, 459, 303" shape="rect" alt="Beëindigen zorg:Business Function" id="areadiagram_map_uQaVuEmGAqAEEUPx_default" href="ArchiMateBusinessFunction_fEqVuEmGAqAEET96.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','26, 38, 459, 303',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_yQaVuEmGAqAEEUPt.html/Zorgverlening - Be&#xeb;indigen zorg (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '26, 38, 459, 303'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="2, 2, 488, 327" coords2="2, 2, 488, 327" shape="rect" alt="Referentie Domeinmodel Geestelijkegezondheidszorg v1.0:Grouping" id="areadiagram_map_uQaVuEmGAqAEEUPv_default" href="ArchiMateGrouping_MMqVuEmGAqAEET_S.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<p>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0">
+			<tr>
+				<td>
+<span class="TableContent Documentation"><html>
+  <head>
+    
+  </head>
+  <body>
+    Dit domein bevat de activiteiten op het gebied van het be&#235;indigen van de 
+    zorgrelatie en afsluiten van de behandeling door ontslag en/of overdracht 
+    in de keten.
+  </body>
+</html>
+</span>				</td>
+			</tr>
+		</table>
+	</p>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		Testproject	</div>
+</body>
+</html>

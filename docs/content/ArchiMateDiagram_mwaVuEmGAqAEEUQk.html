@@ -1,0 +1,213 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>ArchiMate Diagram - 030102. Afnemen anamnese</title>
+	<META name="Description" content="Dit domein bevat de activiteiten op het gebied van de aanmelding van (nieuwe) patiënten, doorverwezen door een erkende verwijzer."/>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		Testproject	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p>
+<a href="Model_G1WVuEmGAqAEEUZn.html" class="PageParentTitle">Uitzoeken : Model</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Model_xlKVuEmGAqAEET6c.html" class="PageParentTitle">RDG v1.0 : Model</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Model_tlKVuEmGAqAEET6d.html" class="PageParentTitle">01. Informatiedomeinen GGZ : Model</a>	</p>
+	<p class="PageTitle">
+		<span id="PageTitleText">
+			ArchiMate Diagram - 030102. Afnemen anamnese		</span>
+<a onclick="javascript: showVpLink('Testproject.vpp://diagram/mwaVuEmGAqAEEUQk', '030102. Afnemen anamnese\nTestproject.vpp://diagram/mwaVuEmGAqAEEUQk', '030102. Afnemen anamnese', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|2.0|2.0|120.0|80.0|ArchiMateBusinessProcess_8DKVuEmGAqAEET7M.html|ArchiMateBusinessProcess_8DKVuEmGAqAEET7M.html|jwaVuEmGAqAEEUQp" id="optionjwaVuEmGAqAEEUQp">Afnemen anamnese : Business Process</option>
+<option value="shape|230.0|2.0|120.0|80.0|ArchiMateBusinessObject_L_KVuEmGAqAEET81.html|ArchiMateBusinessObject_L_KVuEmGAqAEET81.html|3waVuEmGAqAEEUQu" id="option3waVuEmGAqAEEUQu">Anamnese : Business Object</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/030102_Afnemen_anamnese.png" usemap="#diagram_map" class="Image" width="354" height="86"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="230.0, 35.084614, 122.0, 35.915386, 122.0, 35.915386, 122.0, 49.915386, 122.0, 49.915386, 230.0, 49.084614, 230.0, 49.084614, 230.0, 35.084614, 122.0, 49.915386, 122.0, 49.915386, 122.0, 49.915386, 122.0, 49.915386" coords2="230.0, 35.084614, 122.0, 35.915386, 122.0, 35.915386, 122.0, 49.915386, 122.0, 49.915386, 230.0, 49.084614, 230.0, 49.084614, 230.0, 35.084614, 122.0, 49.915386, 122.0, 49.915386, 122.0, 49.915386, 122.0, 49.915386" shape="poly" alt=":Access" id="areadiagram_map_ZIaVuEmGAqAEEUZi_default" href="ArchiMateAccess__WqVuEmGAqAEEUAI.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Middels gerichte vragen verzamelen van informatie rond levensgewoonten, 
+    voorgeschiedenis, klachten en wensen; dit kan ook voorafgaande aan 
+    anamnese zijn aangeleverd middels bijvoorbeeld vragenlijsten of 
+    zelfmanagementinformatie, gesprekken met pati&amp;#235;nt (c.q. regievoerder) en/of 
+    naastbetrokkenen, door ketenpartners, of het naslaan van de medische 
+    voorgeschiedenis.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="2, 2, 122, 82" coords2="2, 2, 122, 82" shape="rect" alt="Afnemen anamnese:Business Process" id="areadiagram_map_jwaVuEmGAqAEEUQp_default" href="ArchiMateBusinessProcess_8DKVuEmGAqAEET7M.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    &amp;quot;Vraaggesprek tussen zorgverlener en pati&amp;#235;nt (of zijn/haar omgeving) 
+    waarbij de zorgverlener gerichte vragen stelt n.a.v. de zorgvraag. Er zijn 
+    diverse soorten anamneses. Naast een algemene verpleegkundige anamnese die 
+    wordt afgenomen bij klinische opname heeft elk specialisme een eigen 
+    anamnese. Naast specifieke medische klachten gaat een anamnese ook in op 
+    de omgeving (familieanamnese), voorgeschiedenis, leefgewoonten 
+    (intoxicaties, voeding), medicatie. De invulling hiervan is deels 
+    specialismenspecifiek.&amp;quot;
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="230, 2, 350, 82" coords2="230, 2, 350, 82" shape="rect" alt="Anamnese:Business Object" id="areadiagram_map_3waVuEmGAqAEEUQu_default" href="ArchiMateBusinessObject_L_KVuEmGAqAEET81.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<p>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0">
+			<tr>
+				<td>
+<span class="TableContent Documentation"><html>
+  <head>
+    
+  </head>
+  <body>
+    Dit domein bevat de activiteiten op het gebied van de aanmelding van 
+    (nieuwe) pati&#235;nten, doorverwezen door een erkende verwijzer.
+  </body>
+</html>
+</span>				</td>
+			</tr>
+		</table>
+	</p>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		Testproject	</div>
+</body>
+</html>

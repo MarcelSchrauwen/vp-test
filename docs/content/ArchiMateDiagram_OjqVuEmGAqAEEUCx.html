@@ -1,0 +1,622 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>ArchiMate Diagram - Informatiedomeinen GGZ (RDG)</title>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		Testproject	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p>
+<a href="Model_Bs1auEmGAqAEEQxe.html" class="PageParentTitle">Generieke architectuur : Model</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_Hfb6uEmGAqAEEQxu.html" class="PageParentTitle">Architectuur : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_G_HTuEmGAqAEEVGm.html" class="PageParentTitle">Business architectuur : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_ap_AeEmGAqAEETJy.html" class="PageParentTitle">Geestelijke gezondheidszorg : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_ez1OuEmGAqAEET5B.html" class="PageParentTitle">Zorgprocessen - Geestelijke gezondheidszorg : Package</a>	</p>
+	<p class="PageTitle">
+		<span id="PageTitleText">
+			ArchiMate Diagram - Informatiedomeinen GGZ (RDG)		</span>
+<a onclick="javascript: showVpLink('Testproject.vpp://diagram/OjqVuEmGAqAEEUCx', 'Informatiedomeinen GGZ (RDG)\nTestproject.vpp://diagram/OjqVuEmGAqAEEUCx', 'Informatiedomeinen GGZ (RDG)', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|194.0|326.0|120.0|80.0|ArchiMateBusinessFunction_QUqVuEmGAqAEET_C.html|ArchiMateBusinessFunction_QUqVuEmGAqAEET_C.html|BjqVuEmGAqAEEUC3" id="optionBjqVuEmGAqAEEUC3">Aanmelding : Business Function</option>
+<option value="shape|194.0|422.0|120.0|80.0|ArchiMateBusinessFunction_BkqVuEmGAqAEET9_.html|ArchiMateBusinessFunction_BkqVuEmGAqAEET9_.html|VjqVuEmGAqAEEUC8" id="optionVjqVuEmGAqAEEUC8">Toeleiding : Business Function</option>
+<option value="shape|398.0|326.0|120.0|80.0|ArchiMateBusinessFunction_r4qVuEmGAqAEET9x.html|ArchiMateBusinessFunction_r4qVuEmGAqAEET9x.html|zjqVuEmGAqAEEUDB" id="optionzjqVuEmGAqAEEUDB">Behandeling : Business Function</option>
+<option value="shape|398.0|422.0|120.0|80.0|ArchiMateBusinessFunction_DkqVuEmGAqAEET_A.html|ArchiMateBusinessFunction_DkqVuEmGAqAEET_A.html|fjqVuEmGAqAEEUDG" id="optionfjqVuEmGAqAEEUDG">Verzorging : Business Function</option>
+<option value="shape|398.0|518.0|120.0|80.0|ArchiMateBusinessFunction_nUqVuEmGAqAEET_J.html|ArchiMateBusinessFunction_nUqVuEmGAqAEET_J.html|kTqVuEmGAqAEEUDL" id="optionkTqVuEmGAqAEEUDL">Medicatie : Business Function</option>
+<option value="shape|590.0|422.0|120.0|80.0|ArchiMateBusinessFunction_s0qVuEmGAqAEET_L.html|ArchiMateBusinessFunction_s0qVuEmGAqAEET_L.html|yTqVuEmGAqAEEUDQ" id="optionyTqVuEmGAqAEEUDQ">Aanvullend onderzoek : Business Function</option>
+<option value="shape|590.0|326.0|120.0|80.0|ArchiMateBusinessFunction_fEqVuEmGAqAEET96.html|ArchiMateBusinessFunction_fEqVuEmGAqAEET96.html|2TqVuEmGAqAEEUDV" id="option2TqVuEmGAqAEEUDV">Beëindigen zorg : Business Function</option>
+<option value="shape|38.0|302.0|829.0|313.0|ArchiMateGrouping_QMqVuEmGAqAEET_R.html|ArchiMateGrouping_QMqVuEmGAqAEET_R.html|.jqVuEmGAqAEEUC1" id="option.jqVuEmGAqAEEUC1">Zorgverlening : Grouping</option>
+<option value="shape|62.0|782.0|120.0|80.0|ArchiMateBusinessFunction_lkqVuEmGAqAEET9_.html|ArchiMateBusinessFunction_lkqVuEmGAqAEET9_.html|pTqVuEmGAqAEEUDc" id="optionpTqVuEmGAqAEEUDc">Beheer gebouwen : Business Function</option>
+<option value="shape|62.0|878.0|120.0|80.0|ArchiMateBusinessFunction_aEqVuEmGAqAEET91.html|ArchiMateBusinessFunction_aEqVuEmGAqAEET91.html|dTqVuEmGAqAEEUDh" id="optiondTqVuEmGAqAEEUDh">Personeel en organisatie : Business Function</option>
+<option value="shape|230.0|782.0|120.0|80.0|ArchiMateBusinessFunction_VUqVuEmGAqAEET_H.html|ArchiMateBusinessFunction_VUqVuEmGAqAEET_H.html|7TqVuEmGAqAEEUDm" id="option7TqVuEmGAqAEEUDm">Inkoop-, contract-, en voorraad-beheer : Business Function</option>
+<option value="shape|230.0|878.0|120.0|80.0|ArchiMateBusinessFunction_u4qVuEmGAqAEET9u.html|ArchiMateBusinessFunction_u4qVuEmGAqAEET9u.html|gzqVuEmGAqAEEUDr" id="optiongzqVuEmGAqAEEUDr">Financiële administratie : Business Function</option>
+<option value="shape|398.0|782.0|120.0|80.0|ArchiMateBusinessFunction_UUqVuEmGAqAEET_D.html|ArchiMateBusinessFunction_UUqVuEmGAqAEET_D.html|0zqVuEmGAqAEEUDw" id="option0zqVuEmGAqAEEUDw">Juridische ondersteuning : Business Function</option>
+<option value="shape|398.0|878.0|120.0|80.0|ArchiMateBusinessFunction_tEqVuEmGAqAEET94.html|ArchiMateBusinessFunction_tEqVuEmGAqAEET94.html|qzqVuEmGAqAEEUD1" id="optionqzqVuEmGAqAEEUD1">Informatievoorziening : Business Function</option>
+<option value="shape|554.0|782.0|120.0|80.0|ArchiMateBusinessFunction_YEqVuEmGAqAEET9z.html|ArchiMateBusinessFunction_YEqVuEmGAqAEET9z.html|ezqVuEmGAqAEEUD6" id="optionezqVuEmGAqAEEUD6">Communicatie en voorlichting : Business Function</option>
+<option value="shape|554.0|878.0|120.0|80.0|ArchiMateBusinessFunction_yUqVuEmGAqAEET_E.html|ArchiMateBusinessFunction_yUqVuEmGAqAEET_E.html|lzqVuEmGAqAEEUD_" id="optionlzqVuEmGAqAEEUD_">Veiligheid, Kwaliteit, Arbo, en Milieu : Business Function</option>
+<option value="shape|710.0|782.0|120.0|80.0|ArchiMateBusinessFunction_xUqVuEmGAqAEET_G.html|ArchiMateBusinessFunction_xUqVuEmGAqAEET_G.html|zzqVuEmGAqAEEUEE" id="optionzzqVuEmGAqAEEUEE">Facilitaire ondersteuning : Business Function</option>
+<option value="shape|710.0|878.0|120.0|80.0|ArchiMateBusinessFunction_sEqVuEmGAqAEET90.html|ArchiMateBusinessFunction_sEqVuEmGAqAEET90.html|vzqVuEmGAqAEEUEJ" id="optionvzqVuEmGAqAEEUEJ">Planning &amp; control : Business Function</option>
+<option value="shape|38.0|758.0|829.0|217.0|ArchiMateGrouping_D0qVuEmGAqAEET_P.html|ArchiMateGrouping_D0qVuEmGAqAEET_P.html|pTqVuEmGAqAEEUDa" id="optionpTqVuEmGAqAEEUDa">Bedrijfsondersteuning : Grouping</option>
+<option value="shape|62.0|62.0|120.0|80.0|ArchiMateBusinessFunction_I0qVuEmGAqAEET_K.html|ArchiMateBusinessFunction_I0qVuEmGAqAEET_K.html|YLqVuEmGAqAEEUEQ" id="optionYLqVuEmGAqAEEUEQ">Sturing : Business Function</option>
+<option value="shape|230.0|62.0|120.0|80.0|ArchiMateBusinessFunction_d4qVuEmGAqAEET9w.html|ArchiMateBusinessFunction_d4qVuEmGAqAEET9w.html|CLqVuEmGAqAEEUEV" id="optionCLqVuEmGAqAEEUEV">Marketing : Business Function</option>
+<option value="shape|398.0|62.0|120.0|80.0|ArchiMateBusinessFunction_rEqVuEmGAqAEET95.html|ArchiMateBusinessFunction_rEqVuEmGAqAEET95.html|mLqVuEmGAqAEEUEa" id="optionmLqVuEmGAqAEEUEa">Performance : Business Function</option>
+<option value="shape|554.0|62.0|120.0|80.0|ArchiMateBusinessFunction_u0qVuEmGAqAEET_N.html|ArchiMateBusinessFunction_u0qVuEmGAqAEET_N.html|xLqVuEmGAqAEEUEf" id="optionxLqVuEmGAqAEEUEf">Verantwoording : Business Function</option>
+<option value="shape|722.0|62.0|120.0|80.0|ArchiMateBusinessFunction_eEqVuEmGAqAEET92.html|ArchiMateBusinessFunction_eEqVuEmGAqAEET92.html|VLqVuEmGAqAEEUEk" id="optionVLqVuEmGAqAEEUEk">Innovatie : Business Function</option>
+<option value="shape|38.0|38.0|829.0|121.0|ArchiMateGrouping_n0qVuEmGAqAEET_Q.html|ArchiMateGrouping_n0qVuEmGAqAEET_Q.html|YLqVuEmGAqAEEUEO" id="optionYLqVuEmGAqAEEUEO">Sturing en Verantwoording : Grouping</option>
+<option value="shape|74.0|650.0|120.0|80.0|ArchiMateBusinessFunction_ZEqVuEmGAqAEET93.html|ArchiMateBusinessFunction_ZEqVuEmGAqAEET93.html|LLqVuEmGAqAEEUEr" id="optionLLqVuEmGAqAEEUEr">Zorgrelatie : Business Function</option>
+<option value="shape|291.0|650.0|120.0|80.0|ArchiMateBusinessFunction_HkqVuEmGAqAEET_B.html|ArchiMateBusinessFunction_HkqVuEmGAqAEET_B.html|fLqVuEmGAqAEEUEw" id="optionfLqVuEmGAqAEEUEw">Resourceplanning : Business Function</option>
+<option value="shape|494.0|650.0|120.0|80.0|ArchiMateBusinessFunction_p0qVuEmGAqAEET_O.html|ArchiMateBusinessFunction_p0qVuEmGAqAEET_O.html|YrqVuEmGAqAEEUE1" id="optionYrqVuEmGAqAEEUE1">Zorgplanning : Business Function</option>
+<option value="shape|698.0|650.0|120.0|80.0|ArchiMateBusinessFunction_IkqVuEmGAqAEET97.html|ArchiMateBusinessFunction_IkqVuEmGAqAEET97.html|CrqVuEmGAqAEEUE6" id="optionCrqVuEmGAqAEEUE6">Financiële afhandeling : Business Function</option>
+<option value="shape|38.0|626.0|829.0|121.0|ArchiMateGrouping_qMqVuEmGAqAEET_V.html|ArchiMateGrouping_qMqVuEmGAqAEET_V.html|zLqVuEmGAqAEEUEp" id="optionzLqVuEmGAqAEEUEp">Zorgprocesondersteuning : Grouping</option>
+<option value="shape|62.0|194.0|120.0|80.0|ArchiMateBusinessFunction_ckqVuEmGAqAEET98.html|ArchiMateBusinessFunction_ckqVuEmGAqAEET98.html|OrqVuEmGAqAEEUFB" id="optionOrqVuEmGAqAEEUFB">Verwijzing : Business Function</option>
+<option value="shape|194.0|194.0|120.0|80.0|ArchiMateBusinessFunction_2UqVuEmGAqAEET_F.html|ArchiMateBusinessFunction_2UqVuEmGAqAEET_F.html|5rqVuEmGAqAEEUFG" id="option5rqVuEmGAqAEEUFG">Informatieuitwisseling : Business Function</option>
+<option value="shape|326.0|194.0|120.0|80.0|ArchiMateBusinessFunction_f4qVuEmGAqAEET9y.html|ArchiMateBusinessFunction_f4qVuEmGAqAEET9y.html|jrqVuEmGAqAEEUFL" id="optionjrqVuEmGAqAEEUFL">Participatie : Business Function</option>
+<option value="shape|458.0|194.0|120.0|80.0|ArchiMateBusinessFunction_Z4qVuEmGAqAEET9v.html|ArchiMateBusinessFunction_Z4qVuEmGAqAEET9v.html|vrqVuEmGAqAEEUFQ" id="optionvrqVuEmGAqAEEUFQ">Kennismanagement : Business Function</option>
+<option value="shape|590.0|194.0|120.0|80.0|ArchiMateBusinessFunction_akqVuEmGAqAEET99.html|ArchiMateBusinessFunction_akqVuEmGAqAEET99.html|4bqVuEmGAqAEEUFV" id="option4bqVuEmGAqAEEUFV">Wetenschappelijk onderzoek : Business Function</option>
+<option value="shape|722.0|194.0|120.0|80.0|ArchiMateBusinessFunction_TUqVuEmGAqAEET_I.html|ArchiMateBusinessFunction_TUqVuEmGAqAEET_I.html|SbqVuEmGAqAEEUFa" id="optionSbqVuEmGAqAEEUFa">Onderwijs : Business Function</option>
+<option value="shape|38.0|170.0|829.0|121.0|ArchiMateGrouping_uMqVuEmGAqAEET_W.html|ArchiMateGrouping_uMqVuEmGAqAEET_W.html|2rqVuEmGAqAEEUE_" id="option2rqVuEmGAqAEEUE_">Samenwerking : Grouping</option>
+<option value="shape|2.0|2.0|900.0|1009.0|ArchiMateGrouping_MMqVuEmGAqAEET_S.html|ArchiMateGrouping_MMqVuEmGAqAEET_S.html|ejqVuEmGAqAEEUCz" id="optionejqVuEmGAqAEEUCz">Referentie Domeinmodel Geestelijkegezondheidszorg v1.0 : Grouping</option>
+<option value="shape|81.0|340.0|114.0|62.0|ShapeEditorShape_1oUYeEmGAqAEETnE.html|ShapeEditorShape_1oUYeEmGAqAEETnE.html|1oUYeEmGAqAEETnD" id="option1oUYeEmGAqAEETnD">Voorbeeld : Freehand Shape</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/Informatiedomeinen_GGZ_RDG.png" usemap="#diagram_map" class="Image" width="906" height="1015"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="441.0, 615.0, 441.0, 625.0, 455.0, 625.0, 455.0, 615.0" coords2="441.0, 615.0, 441.0, 625.0, 455.0, 625.0, 455.0, 615.0" shape="poly" alt=":Composition" id="areadiagram_map_gIaVuEmGAqAEEUQw_default" href="ArchiMateComposition_7hqVuEmGAqAEEUA7.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="633.0, 615.0, 633.0, 625.0, 647.0, 625.0, 647.0, 615.0" coords2="633.0, 615.0, 633.0, 625.0, 647.0, 625.0, 647.0, 615.0" shape="poly" alt=":Composition" id="areadiagram_map_gIaVuEmGAqAEEUQy_default" href="ArchiMateComposition_deqVuEmGAqAEEUAl.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="867.0, 364.0, 867.0, 378.0, 877.0, 378.0, 877.0, 364.0" coords2="867.0, 364.0, 867.0, 378.0, 877.0, 378.0, 877.0, 364.0" shape="poly" alt=":Composition" id="areadiagram_map_gIaVuEmGAqAEEUQ0_default" href="ArchiMateComposition_W2qVuEmGAqAEEUAL.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="460.0, 615.0, 460.0, 625.0, 474.0, 625.0, 474.0, 615.0" coords2="460.0, 615.0, 460.0, 625.0, 474.0, 625.0, 474.0, 615.0" shape="poly" alt=":Composition" id="areadiagram_map_gIaVuEmGAqAEEUQ2_default" href="ArchiMateComposition_AxqVuEmGAqAEEUBE.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="633.0, 615.0, 633.0, 625.0, 647.0, 625.0, 647.0, 615.0" coords2="633.0, 615.0, 633.0, 625.0, 647.0, 625.0, 647.0, 615.0" shape="poly" alt=":Composition" id="areadiagram_map_gIaVuEmGAqAEEUQ4_default" href="ArchiMateComposition_ptqVuEmGAqAEEUCU.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="867.0, 463.0, 867.0, 477.0, 877.0, 477.0, 877.0, 463.0" coords2="867.0, 463.0, 867.0, 477.0, 877.0, 477.0, 877.0, 463.0" shape="poly" alt=":Composition" id="areadiagram_map_QIaVuEmGAqAEEUQ6_default" href="ArchiMateComposition_T2qVuEmGAqAEEUAO.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="476.0, 615.0, 476.0, 625.0, 490.0, 625.0, 490.0, 615.0" coords2="476.0, 615.0, 476.0, 625.0, 490.0, 625.0, 490.0, 615.0" shape="poly" alt=":Composition" id="areadiagram_map_QIaVuEmGAqAEEUQ8_default" href="ArchiMateComposition_ddqVuEmGAqAEEUCd.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="867.0, 828.0, 867.0, 842.0, 877.0, 842.0, 877.0, 828.0" coords2="867.0, 828.0, 867.0, 842.0, 877.0, 842.0, 877.0, 828.0" shape="poly" alt=":Composition" id="areadiagram_map_QIaVuEmGAqAEEUQ._default" href="ArchiMateComposition_I_qVuEmGAqAEEUAn.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="452.0, 975.0, 452.0, 985.0, 466.0, 985.0, 466.0, 975.0" coords2="452.0, 975.0, 452.0, 985.0, 466.0, 985.0, 466.0, 975.0" shape="poly" alt=":Composition" id="areadiagram_map_QIaVuEmGAqAEEURA_default" href="ArchiMateComposition_SlqVuEmGAqAEEUBz.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="" coords2="" shape="poly" alt=":Composition" id="areadiagram_map_QIaVuEmGAqAEEURC_default" href="ArchiMateComposition_gOqVuEmGAqAEEUAQ.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="596.0, 975.0, 596.0, 985.0, 610.0, 985.0, 610.0, 975.0" coords2="596.0, 975.0, 596.0, 985.0, 610.0, 985.0, 610.0, 975.0" shape="poly" alt=":Composition" id="areadiagram_map_QIaVuEmGAqAEEURE_default" href="ArchiMateComposition_RuqVuEmGAqAEEUAc.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="867.0, 920.0, 867.0, 934.0, 877.0, 934.0, 877.0, 920.0" coords2="867.0, 920.0, 867.0, 934.0, 877.0, 934.0, 877.0, 920.0" shape="poly" alt=":Composition" id="areadiagram_map_QIaVuEmGAqAEEURG_default" href="ArchiMateComposition_xJqVuEmGAqAEEUBR.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="753.0, 975.0, 753.0, 985.0, 767.0, 985.0, 767.0, 975.0" coords2="753.0, 975.0, 753.0, 985.0, 767.0, 985.0, 767.0, 975.0" shape="poly" alt=":Composition" id="areadiagram_map_QIaVuEmGAqAEEURI_default" href="ArchiMateComposition_CFqVuEmGAqAEEUBs.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="753.0, 975.0, 753.0, 985.0, 767.0, 985.0, 767.0, 975.0" coords2="753.0, 975.0, 753.0, 985.0, 767.0, 985.0, 767.0, 975.0" shape="poly" alt=":Composition" id="areadiagram_map_QIaVuEmGAqAEEURK_default" href="ArchiMateComposition_GxqVuEmGAqAEEUBH.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="867.0, 918.0, 867.0, 932.0, 877.0, 932.0, 877.0, 918.0" coords2="867.0, 918.0, 867.0, 932.0, 877.0, 932.0, 877.0, 918.0" shape="poly" alt=":Composition" id="areadiagram_map_QIaVuEmGAqAEEURM_default" href="ArchiMateComposition_5VqVuEmGAqAEEUB9.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="867.0, 836.0, 867.0, 850.0, 877.0, 850.0, 877.0, 836.0" coords2="867.0, 836.0, 867.0, 850.0, 877.0, 850.0, 877.0, 836.0" shape="poly" alt=":Composition" id="areadiagram_map_QIaVuEmGAqAEEURO_default" href="ArchiMateComposition_OhqVuEmGAqAEEUA4.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="597.0, 975.0, 597.0, 985.0, 611.0, 985.0, 611.0, 975.0" coords2="597.0, 975.0, 597.0, 985.0, 611.0, 985.0, 611.0, 975.0" shape="poly" alt=":Composition" id="areadiagram_map_QIaVuEmGAqAEEURQ_default" href="ArchiMateComposition_H5qVuEmGAqAEEUBp.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="867.0, 103.0, 867.0, 117.0, 877.0, 117.0, 877.0, 103.0" coords2="867.0, 103.0, 867.0, 117.0, 877.0, 117.0, 877.0, 103.0" shape="poly" alt=":Composition" id="areadiagram_map_QIaVuEmGAqAEEURS_default" href="ArchiMateComposition_bJqVuEmGAqAEEUBT.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="596.0, 159.0, 596.0, 169.0, 610.0, 169.0, 610.0, 159.0" coords2="596.0, 159.0, 596.0, 169.0, 610.0, 169.0, 610.0, 159.0" shape="poly" alt=":Composition" id="areadiagram_map_QIaVuEmGAqAEEURU_default" href="ArchiMateComposition_VFqVuEmGAqAEEUBv.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="441.0, 159.0, 441.0, 169.0, 455.0, 169.0, 455.0, 159.0" coords2="441.0, 159.0, 441.0, 169.0, 455.0, 169.0, 455.0, 159.0" shape="poly" alt=":Composition" id="areadiagram_map_QIaVuEmGAqAEEURW_default" href="ArchiMateComposition_YtqVuEmGAqAEEUCQ.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="766.0, 159.0, 766.0, 169.0, 780.0, 169.0, 780.0, 159.0" coords2="766.0, 159.0, 766.0, 169.0, 780.0, 169.0, 780.0, 159.0" shape="poly" alt=":Composition" id="areadiagram_map_QIaVuEmGAqAEEURY_default" href="ArchiMateComposition_fVqVuEmGAqAEEUCA.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="867.0, 114.0, 867.0, 128.0, 877.0, 128.0, 877.0, 114.0" coords2="867.0, 114.0, 867.0, 128.0, 877.0, 128.0, 877.0, 114.0" shape="poly" alt=":Composition" id="areadiagram_map_QIaVuEmGAqAEEURa_default" href="ArchiMateComposition_qBqVuEmGAqAEEUAw.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="867.0, 688.0, 867.0, 702.0, 877.0, 702.0, 877.0, 688.0" coords2="867.0, 688.0, 867.0, 702.0, 877.0, 702.0, 877.0, 688.0" shape="poly" alt=":Composition" id="areadiagram_map_QIaVuEmGAqAEEURc_default" href="ArchiMateComposition_ixqVuEmGAqAEEUBG.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="867.0, 704.0, 867.0, 718.0, 877.0, 718.0, 877.0, 704.0" coords2="867.0, 704.0, 867.0, 718.0, 877.0, 718.0, 877.0, 704.0" shape="poly" alt=":Composition" id="areadiagram_map_wIaVuEmGAqAEEURe_default" href="ArchiMateComposition_J_qVuEmGAqAEEUAq.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="537.0, 747.0, 537.0, 757.0, 551.0, 757.0, 551.0, 747.0" coords2="537.0, 747.0, 537.0, 757.0, 551.0, 757.0, 551.0, 747.0" shape="poly" alt=":Composition" id="areadiagram_map_wIaVuEmGAqAEEURg_default" href="ArchiMateComposition_fdqVuEmGAqAEEUCf.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="741.0, 747.0, 741.0, 757.0, 755.0, 757.0, 755.0, 747.0" coords2="741.0, 747.0, 741.0, 757.0, 755.0, 757.0, 755.0, 747.0" shape="poly" alt=":Composition" id="areadiagram_map_wIaVuEmGAqAEEURi_default" href="ArchiMateComposition_7DqVuEmGAqAEEUCt.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="766.0, 291.0, 766.0, 301.0, 780.0, 301.0, 780.0, 291.0" coords2="766.0, 291.0, 766.0, 301.0, 780.0, 301.0, 780.0, 291.0" shape="poly" alt=":Composition" id="areadiagram_map_wIaVuEmGAqAEEURk_default" href="ArchiMateComposition_CuqVuEmGAqAEEUAa.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="867.0, 237.0, 867.0, 251.0, 877.0, 251.0, 877.0, 237.0" coords2="867.0, 237.0, 867.0, 251.0, 877.0, 251.0, 877.0, 237.0" shape="poly" alt=":Composition" id="areadiagram_map_wIaVuEmGAqAEEURm_default" href="ArchiMateComposition_qJqVuEmGAqAEEUBP.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="633.0, 291.0, 633.0, 301.0, 647.0, 301.0, 647.0, 291.0" coords2="633.0, 291.0, 633.0, 301.0, 647.0, 301.0, 647.0, 291.0" shape="poly" alt=":Composition" id="areadiagram_map_wIaVuEmGAqAEEURo_default" href="ArchiMateComposition_tDqVuEmGAqAEEUCs.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="867.0, 241.0, 867.0, 255.0, 877.0, 255.0, 877.0, 241.0" coords2="867.0, 241.0, 867.0, 255.0, 877.0, 255.0, 877.0, 241.0" shape="poly" alt=":Composition" id="areadiagram_map_wIaVuEmGAqAEEURq_default" href="ArchiMateComposition_etqVuEmGAqAEEUCT.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="501.0, 291.0, 501.0, 301.0, 515.0, 301.0, 515.0, 291.0" coords2="501.0, 291.0, 501.0, 301.0, 515.0, 301.0, 515.0, 291.0" shape="poly" alt=":Composition" id="areadiagram_map_wIaVuEmGAqAEEURs_default" href="ArchiMateComposition_AuqVuEmGAqAEEUAY.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="" coords2="" shape="poly" alt=":Composition" id="areadiagram_map_wIaVuEmGAqAEEURu_default" href="ArchiMateComposition_49qVuEmGAqAEEUCg.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="406.0, 1011.0, 406.0, 1021.0, 420.0, 1021.0, 420.0, 1011.0" coords2="406.0, 1011.0, 406.0, 1021.0, 420.0, 1021.0, 420.0, 1011.0" shape="poly" alt=":Composition" id="areadiagram_map_wIaVuEmGAqAEEURw_default" href="ArchiMateComposition_5eqVuEmGAqAEEUAk.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="354.0, -8.0, 354.0, 2.0, 368.0, 2.0, 368.0, -8.0" coords2="354.0, -8.0, 354.0, 2.0, 368.0, 2.0, 368.0, -8.0" shape="poly" alt=":Composition" id="areadiagram_map_wIaVuEmGAqAEEURy_default" href="ArchiMateComposition_oJqVuEmGAqAEEUBN.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="447.0, -8.0, 447.0, 2.0, 461.0, 2.0, 461.0, -8.0" coords2="447.0, -8.0, 447.0, 2.0, 461.0, 2.0, 461.0, -8.0" shape="poly" alt=":Composition" id="areadiagram_map_IIaVuEmGAqAEEUR0_default" href="ArchiMateComposition_5dqVuEmGAqAEEUCc.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="187.0, -8.0, 187.0, 2.0, 201.0, 2.0, 201.0, -8.0" coords2="187.0, -8.0, 187.0, 2.0, 201.0, 2.0, 201.0, -8.0" shape="poly" alt=":Composition" id="areadiagram_map_IIaVuEmGAqAEEUR2_default" href="ArchiMateComposition_bxqVuEmGAqAEEUBL.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="466.0, 1011.0, 466.0, 1021.0, 480.0, 1021.0, 480.0, 1011.0" coords2="466.0, 1011.0, 466.0, 1021.0, 480.0, 1021.0, 480.0, 1011.0" shape="poly" alt=":Composition" id="areadiagram_map_IIaVuEmGAqAEEUR4_default" href="ArchiMateComposition_1NqVuEmGAqAEEUCN.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="81, 340, 195, 402" coords2="81, 340, 195, 402" shape="rect" alt="Voorbeeld:Freehand Shape" id="areadiagram_map_1oUYeEmGAqAEETnD_default" href="ShapeEditorShape_1oUYeEmGAqAEETnE.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten op het gebied van de aanmelding van 
+    (nieuwe) pati&amp;#235;nten, doorverwezen door een erkende verwijzer.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="194, 326, 314, 406" coords2="194, 326, 314, 406" shape="rect" alt="Aanmelding:Business Function" id="areadiagram_map_BjqVuEmGAqAEEUC3_default" href="ArchiMateBusinessFunction_QUqVuEmGAqAEET_C.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','194, 326, 314, 406',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_7nqVuEmGAqAEEUH_.html/Zorgverlening - Aanmelding (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '194, 326, 314, 406'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten op het gebied van het bepalen van de 
+    noodzakelijke zorg op basis van een gestelde diagnose en de vaststelling 
+    daarvan in de vorm van een behandelplan.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="194, 422, 314, 502" coords2="194, 422, 314, 502" shape="rect" alt="Toeleiding:Business Function" id="areadiagram_map_VjqVuEmGAqAEEUC8_default" href="ArchiMateBusinessFunction_BkqVuEmGAqAEET9_.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','194, 422, 314, 502',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_f_qVuEmGAqAEEUNX.html/Zorgverlening - Toeleiding (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '194, 422, 314, 502'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten op het gebied van het uitvoeren, meten en 
+    bijstellen van de behandeling(en) en begeleiding van de pati&amp;#235;nt daarbij.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="398, 326, 518, 406" coords2="398, 326, 518, 406" shape="rect" alt="Behandeling:Business Function" id="areadiagram_map_zjqVuEmGAqAEEUDB_default" href="ArchiMateBusinessFunction_r4qVuEmGAqAEET9x.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','398, 326, 518, 406',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_6AaVuEmGAqAEEUN4.html/Zorgverlening - Behandeling (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '398, 326, 518, 406'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten op het gebied van het verzorgen van de 
+    pati&amp;#235;nt en het bieden van zorgondersteunende (klinische) diensten.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="398, 422, 518, 502" coords2="398, 422, 518, 502" shape="rect" alt="Verzorging:Business Function" id="areadiagram_map_fjqVuEmGAqAEEUDG_default" href="ArchiMateBusinessFunction_DkqVuEmGAqAEET_A.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','398, 422, 518, 502',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_jHqVuEmGAqAEEUHS.html/Zorgverlening - Verzorging (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '398, 422, 518, 502'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten op het gebied van het voorschrijven, 
+    bereiden en toedienen van medicatie, alsmede het bewaken van 
+    medicatiegebruik.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="398, 518, 518, 598" coords2="398, 518, 518, 598" shape="rect" alt="Medicatie:Business Function" id="areadiagram_map_kTqVuEmGAqAEEUDL_default" href="ArchiMateBusinessFunction_nUqVuEmGAqAEET_J.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','398, 518, 518, 598',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_f3qVuEmGAqAEEUJy.html/Zorgverlening - Medicatie (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '398, 518, 518, 598'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten op het gebied van het doen van intern of 
+    extern aanvullend onderzoek ten behoeve van toeleiding of behandeling van 
+    de pati&amp;#235;nt.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="590, 422, 710, 502" coords2="590, 422, 710, 502" shape="rect" alt="Aanvullend onderzoek:Business Function" id="areadiagram_map_yTqVuEmGAqAEEUDQ_default" href="ArchiMateBusinessFunction_s0qVuEmGAqAEET_L.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','590, 422, 710, 502',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_knqVuEmGAqAEEUHn.html/Zorgverlening - Aanvullend onderzoek (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '590, 422, 710, 502'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten op het gebied van het be&amp;#235;indigen van de 
+    zorgrelatie en afsluiten van de behandeling door ontslag en/of overdracht 
+    in de keten.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="590, 326, 710, 406" coords2="590, 326, 710, 406" shape="rect" alt="Beëindigen zorg:Business Function" id="areadiagram_map_2TqVuEmGAqAEEUDV_default" href="ArchiMateBusinessFunction_fEqVuEmGAqAEET96.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','590, 326, 710, 406',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_yQaVuEmGAqAEEUPt.html/Zorgverlening - Be&#xeb;indigen zorg (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '590, 326, 710, 406'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Binnen Zorgverlening vallen de domeinen waarbinnen de zorg geleverd wordt.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="38, 302, 867, 615" coords2="38, 302, 867, 615" shape="rect" alt="Zorgverlening:Grouping" id="areadiagram_map_.jqVuEmGAqAEEUC1_default" href="ArchiMateGrouping_QMqVuEmGAqAEET_R.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten met betrekking tot het beheren en 
+    exploiteren van gebouwen.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="62, 782, 182, 862" coords2="62, 782, 182, 862" shape="rect" alt="Beheer gebouwen:Business Function" id="areadiagram_map_pTqVuEmGAqAEEUDc_default" href="ArchiMateBusinessFunction_lkqVuEmGAqAEET9_.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','62, 782, 182, 862',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_yHqVuEmGAqAEEUG9.html/Bedrijfsondersteuning - Beheer gebouwen (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '62, 782, 182, 862'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten ten behoeve van het personeelsbeheer.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="62, 878, 182, 958" coords2="62, 878, 182, 958" shape="rect" alt="Personeel en organisatie:Business Function" id="areadiagram_map_dTqVuEmGAqAEEUDh_default" href="ArchiMateBusinessFunction_aEqVuEmGAqAEET91.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','62, 878, 182, 958',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_Z3qVuEmGAqAEEUJd.html/Bedrijfsondersteuning - Personeel en organisatie (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '62, 878, 182, 958'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten ten behoeve van inkoop, contractuele 
+    afspraken en goederenlogistiek.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="230, 782, 350, 862" coords2="230, 782, 350, 862" shape="rect" alt="Inkoop-, contract-, en voorraad-beheer:Business Function" id="areadiagram_map_7TqVuEmGAqAEEUDm_default" href="ArchiMateBusinessFunction_VUqVuEmGAqAEET_H.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','230, 782, 350, 862',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_XgaVuEmGAqAEEUPS.html/Bedrijfsondersteuning - Inkoop-, contract-, en voorraad-beheer (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '230, 782, 350, 862'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten ten behoeve van de financi&amp;#235;le 
+    administratie van de organisatie.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="230, 878, 350, 958" coords2="230, 878, 350, 958" shape="rect" alt="Financiële administratie:Business Function" id="areadiagram_map_gzqVuEmGAqAEEUDr_default" href="ArchiMateBusinessFunction_u4qVuEmGAqAEET9u.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','230, 878, 350, 958',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_PbqVuEmGAqAEEUF0.html/Bedrijfsondersteuning - Financi&#xeb;le administratie (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '230, 878, 350, 958'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten ten behoeve van juridisch advies, 
+    ondersteuning en beleid.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="398, 782, 518, 862" coords2="398, 782, 518, 862" shape="rect" alt="Juridische ondersteuning:Business Function" id="areadiagram_map_0zqVuEmGAqAEEUDw_default" href="ArchiMateBusinessFunction_UUqVuEmGAqAEET_D.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','398, 782, 518, 862',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_WfqVuEmGAqAEEUMD.html/Bedrijfsondersteuning - Juridische ondersteuning (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '398, 782, 518, 862'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten op het gebied van het beheren van de 
+    informatiehuishouding van de organisatie, inclusief ICT voorzieningen.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="398, 878, 518, 958" coords2="398, 878, 518, 958" shape="rect" alt="Informatievoorziening:Business Function" id="areadiagram_map_qzqVuEmGAqAEEUD1_default" href="ArchiMateBusinessFunction_tEqVuEmGAqAEET94.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','398, 878, 518, 958',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_67qVuEmGAqAEEUGJ.html/Bedrijfsondersteuning - Informatie voorziening (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '398, 878, 518, 958'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten ten behoeve van communicatie met en 
+    voorlichting aan pati&amp;#235;nten, bezoekers en zorgprofessionals.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="554, 782, 674, 862" coords2="554, 782, 674, 862" shape="rect" alt="Communicatie en voorlichting:Business Function" id="areadiagram_map_ezqVuEmGAqAEEUD6_default" href="ArchiMateBusinessFunction_YEqVuEmGAqAEET9z.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','554, 782, 674, 862',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_ObqVuEmGAqAEEUFf.html/Communicatie en voorlichting (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '554, 782, 674, 862'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Activiteiten met betrekking tot het bewaken en optimaliseren van 
+    Veiligheid, kwaliteit, arbeidsomstandigheden en milieuaspecten binnen de 
+    organisatie.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="554, 878, 674, 958" coords2="554, 878, 674, 958" shape="rect" alt="Veiligheid, Kwaliteit, Arbo, en Milieu:Business Function" id="areadiagram_map_lzqVuEmGAqAEEUD__default" href="ArchiMateBusinessFunction_yUqVuEmGAqAEET_E.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','554, 878, 674, 958',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_gvqVuEmGAqAEEUK5.html/Bedrijfsondersteuning - Veiligheid, Kwaliteit, Arbo, en Milieu (GGz))/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '554, 878, 674, 958'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten ten behoeve van de facilitaire 
+    ondersteuning van de organisatie.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="710, 782, 830, 862" coords2="710, 782, 830, 862" shape="rect" alt="Facilitaire ondersteuning:Business Function" id="areadiagram_map_zzqVuEmGAqAEEUEE_default" href="ArchiMateBusinessFunction_xUqVuEmGAqAEET_G.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','710, 782, 830, 862',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_x_qVuEmGAqAEEUM8.html/Bedrijfsondersteuning - Facilitaire ondersteuning (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '710, 782, 830, 862'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten ten behoeve van het ondersteunen van de 
+    periodieke interne verantwoording.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="710, 878, 830, 958" coords2="710, 878, 830, 958" shape="rect" alt="Planning &amp; control:Business Function" id="areadiagram_map_vzqVuEmGAqAEEUEJ_default" href="ArchiMateBusinessFunction_sEqVuEmGAqAEET90.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','710, 878, 830, 958',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_0_qVuEmGAqAEEUMt.html/Bedrijfsondersteuning - Planning &amp; control (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '710, 878, 830, 958'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Binnen bedrijfsondersteuning vallen de domeinen die ondersteunend zijn aan 
+    het bedrijfs(zorg)proces.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="38, 758, 867, 975" coords2="38, 758, 867, 975" shape="rect" alt="Bedrijfsondersteuning:Grouping" id="areadiagram_map_pTqVuEmGAqAEEUDa_default" href="ArchiMateGrouping_D0qVuEmGAqAEET_P.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten voor het bepalen van de missie, visie, 
+    strategie en beleid van de organisatie, inclusief de inrichting en de 
+    beheersing hiervan.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="62, 62, 182, 142" coords2="62, 62, 182, 142" shape="rect" alt="Sturing:Business Function" id="areadiagram_map_YLqVuEmGAqAEEUEQ_default" href="ArchiMateBusinessFunction_I0qVuEmGAqAEET_K.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','62, 62, 182, 142',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_C3qVuEmGAqAEEUJE.html/Sturing en verantwoording - Sturing (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '62, 62, 182, 142'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten die nodig zijn voor optimale afstemming 
+    tussen vraag en aanbod.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="230, 62, 350, 142" coords2="230, 62, 350, 142" shape="rect" alt="Marketing:Business Function" id="areadiagram_map_CLqVuEmGAqAEEUEV_default" href="ArchiMateBusinessFunction_d4qVuEmGAqAEET9w.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','230, 62, 350, 142',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_NQaVuEmGAqAEEUQC.html/Sturing en verantwoording - Marketing (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '230, 62, 350, 142'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten die betrekking hebben op het maken, meten 
+    en sturen op performance indicatoren.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="398, 62, 518, 142" coords2="398, 62, 518, 142" shape="rect" alt="Performance:Business Function" id="areadiagram_map_mLqVuEmGAqAEEUEa_default" href="ArchiMateBusinessFunction_rEqVuEmGAqAEET95.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','398, 62, 518, 142',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_6vqVuEmGAqAEEULS.html/Sturing en verantwoording - Performance (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '398, 62, 518, 142'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten gericht op de verantwoording van de 
+    organisatie aan de omgeving.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="554, 62, 674, 142" coords2="554, 62, 674, 142" shape="rect" alt="Verantwoording:Business Function" id="areadiagram_map_xLqVuEmGAqAEEUEf_default" href="ArchiMateBusinessFunction_u0qVuEmGAqAEET_N.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','554, 62, 674, 142',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_AwaVuEmGAqAEEUQR.html/Sturing en verantwoording - Verantwoording (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '554, 62, 674, 142'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten voor het ontwikkelen van bestaande en 
+    nieuwe dienstverlening.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="722, 62, 842, 142" coords2="722, 62, 842, 142" shape="rect" alt="Innovatie:Business Function" id="areadiagram_map_VLqVuEmGAqAEEUEk_default" href="ArchiMateBusinessFunction_eEqVuEmGAqAEET92.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','722, 62, 842, 142',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_r7qVuEmGAqAEEUGi.html/Sturing en verantwoording - Innovatie (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '722, 62, 842, 142'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Sturing en verantwoording betreft de strategische sturing en 
+    verantwoording vanuit het hoger management, en de sturing en 
+    verantwoording op tactisch en operationeel niveau.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="38, 38, 867, 159" coords2="38, 38, 867, 159" shape="rect" alt="Sturing en Verantwoording:Grouping" id="areadiagram_map_YLqVuEmGAqAEEUEO_default" href="ArchiMateGrouping_n0qVuEmGAqAEET_Q.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten op het gebied van het identificeren, 
+    vastleggen en onderhouden van zorgrelaties, inclusief zorgverleners en 
+    financiers.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="74, 650, 194, 730" coords2="74, 650, 194, 730" shape="rect" alt="Zorgrelatie:Business Function" id="areadiagram_map_LLqVuEmGAqAEEUEr_default" href="ArchiMateBusinessFunction_ZEqVuEmGAqAEET93.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','74, 650, 194, 730',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_WXqVuEmGAqAEEUIY.html/Zorgprocesondersteuning - Zorgrelatie (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '74, 650, 194, 730'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten op het gebied van het plannen van de 
+    inzet van personeel en locaties.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="291, 650, 411, 730" coords2="291, 650, 411, 730" shape="rect" alt="Resourceplanning:Business Function" id="areadiagram_map_fLqVuEmGAqAEEUEw_default" href="ArchiMateBusinessFunction_HkqVuEmGAqAEET_B.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','291, 650, 411, 730',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_DAaVuEmGAqAEEUOV.html/Zorgprocesondersteuning - Resource planning (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '291, 650, 411, 730'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten op het gebied van het vastleggen van 
+    afspraken en planning van de zorgverlening aan pati&amp;#235;nten.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="494, 650, 614, 730" coords2="494, 650, 614, 730" shape="rect" alt="Zorgplanning:Business Function" id="areadiagram_map_YrqVuEmGAqAEEUE1_default" href="ArchiMateBusinessFunction_p0qVuEmGAqAEET_O.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','494, 650, 614, 730',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_RgaVuEmGAqAEEUO_.html/Zorgprocesondersteuning - Zorgplanning (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '494, 650, 614, 730'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten op het gebied van het registreren van 
+    behandelactiviteiten (DBC''s) en zorgverlening, ten behoeve van de 
+    facturering van de zorg.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="698, 650, 818, 730" coords2="698, 650, 818, 730" shape="rect" alt="Financiële afhandeling:Business Function" id="areadiagram_map_CrqVuEmGAqAEEUE6_default" href="ArchiMateBusinessFunction_IkqVuEmGAqAEET97.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','698, 650, 818, 730',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_tPqVuEmGAqAEEUKm.html/Zorgprocesondersteuning - Financi&#xeb;le afhandeling (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '698, 650, 818, 730'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Binnen Zorgprocesondersteuning vallen de domeinen die ondersteunend zijn 
+    aan het zorgproces.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="38, 626, 867, 747" coords2="38, 626, 867, 747" shape="rect" alt="Zorgprocesondersteuning:Grouping" id="areadiagram_map_zLqVuEmGAqAEEUEp_default" href="ArchiMateGrouping_qMqVuEmGAqAEET_V.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten voor verwijzingen van en naar andere 
+    zorgverleners.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="62, 194, 182, 274" coords2="62, 194, 182, 274" shape="rect" alt="Verwijzing:Business Function" id="areadiagram_map_OrqVuEmGAqAEEUFB_default" href="ArchiMateBusinessFunction_ckqVuEmGAqAEET98.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','62, 194, 182, 274',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_VvqVuEmGAqAEEULj.html/Samenwerking - Verwijziging (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '62, 194, 182, 274'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten op het gebied van uitwisseling van 
+    zorginformatie met externe zorgverleners (excl. verwijzingen).
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="194, 194, 314, 274" coords2="194, 194, 314, 274" shape="rect" alt="Informatieuitwisseling:Business Function" id="areadiagram_map_5rqVuEmGAqAEEUFG_default" href="ArchiMateBusinessFunction_2UqVuEmGAqAEET_F.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','194, 194, 314, 274',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_6PqVuEmGAqAEEUKV.html/Samenwerking - Informatie uitwisseling (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '194, 194, 314, 274'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten die nodig zijn voor de participatie van 
+    de pati&amp;#235;nt bij zijn eigen zorgproces.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="326, 194, 446, 274" coords2="326, 194, 446, 274" shape="rect" alt="Participatie:Business Function" id="areadiagram_map_jrqVuEmGAqAEEUFL_default" href="ArchiMateBusinessFunction_f4qVuEmGAqAEET9y.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','326, 194, 446, 274',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_0gaVuEmGAqAEEUOu.html/Samenwerking - Participatie (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '326, 194, 446, 274'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten die nodig zijn voor managen van de 
+    informatie-uitwisseling tussen kennisaanbieder en kennisvrager.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="458, 194, 578, 274" coords2="458, 194, 578, 274" shape="rect" alt="Kennismanagement:Business Function" id="areadiagram_map_vrqVuEmGAqAEEUFQ_default" href="ArchiMateBusinessFunction_Z4qVuEmGAqAEET9v.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','458, 194, 578, 274',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_7XqVuEmGAqAEEUIx.html/Samenwerking - Kennismanagement (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '458, 194, 578, 274'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten op het gebied van wetenschappelijk 
+    onderzoek.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="590, 194, 710, 274" coords2="590, 194, 710, 274" shape="rect" alt="Wetenschappelijk onderzoek:Business Function" id="areadiagram_map_4bqVuEmGAqAEEUFV_default" href="ArchiMateBusinessFunction_akqVuEmGAqAEET99.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','590, 194, 710, 274',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_wfqVuEmGAqAEEULy.html/Samenwerking - Wetenschappelijk onderzoek (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '590, 194, 710, 274'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten die gericht zijn op het aanbieden van 
+    onderwijs.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="722, 194, 842, 274" coords2="722, 194, 842, 274" shape="rect" alt="Onderwijs:Business Function" id="areadiagram_map_SbqVuEmGAqAEEUFa_default" href="ArchiMateBusinessFunction_TUqVuEmGAqAEET_I.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','722, 194, 842, 274',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_TfqVuEmGAqAEEUMY.html/Samenwerking - Onderwijs (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '722, 194, 842, 274'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Samenwerking vindt over de domeinen heen plaats, bijvoorbeeld tussen zorg, 
+    onderwijs en onderzoek, maar ook bij verwijzing en uitwisseling met andere 
+    zorginstanties en zorgverlener. Samenwerking kent daarnaast ook zijn eigen 
+    specifieke activiteiten en informatieobjecten, denk bijvoorbeeld aan 
+    zelfmanagement(informatie). Samenwerking sluit ook goed aan bij 
+    ontwikkelingen rondom zoals, eHealth, interoperabiliteit en noodzaak voor 
+    samenwerking, uitwisseling en verbinding.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="38, 170, 867, 291" coords2="38, 170, 867, 291" shape="rect" alt="Samenwerking:Grouping" id="areadiagram_map_2rqVuEmGAqAEEUE__default" href="ArchiMateGrouping_uMqVuEmGAqAEET_W.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="2, 2, 902, 1011" coords2="2, 2, 902, 1011" shape="rect" alt="Referentie Domeinmodel Geestelijkegezondheidszorg v1.0:Grouping" id="areadiagram_map_ejqVuEmGAqAEEUCz_default" href="ArchiMateGrouping_MMqVuEmGAqAEET_S.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		Testproject	</div>
+</body>
+</html>

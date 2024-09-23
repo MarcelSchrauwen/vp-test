@@ -1,0 +1,265 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>ArchiMate Diagram - Communicatie en voorlichting (GGz)</title>
+	<META name="Description" content="Dit domein bevat de activiteiten ten behoeve van communicatie met en voorlichting aan patiënten, bezoekers en zorgprofessionals."/>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		Testproject	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p>
+<a href="Model_Bs1auEmGAqAEEQxe.html" class="PageParentTitle">Generieke architectuur : Model</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_Hfb6uEmGAqAEEQxu.html" class="PageParentTitle">Architectuur : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_G_HTuEmGAqAEEVGm.html" class="PageParentTitle">Business architectuur : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_ap_AeEmGAqAEETJy.html" class="PageParentTitle">Geestelijke gezondheidszorg : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_ez1OuEmGAqAEET5B.html" class="PageParentTitle">Zorgprocessen - Geestelijke gezondheidszorg : Package</a>	</p>
+	<p class="PageTitle">
+<a href="ArchiMateBusinessFunction_YEqVuEmGAqAEET9z.html"><img style="border: 1px solid #C0C0C0; " src="../images/icons/Breadcrumb_JumpToDiagram.png" alt="Referenced by Communicatie en voorlichting"/></a>		<span id="PageTitleText">
+			ArchiMate Diagram - Communicatie en voorlichting (GGz)		</span>
+<a onclick="javascript: showVpLink('Testproject.vpp://diagram/ObqVuEmGAqAEEUFf', 'Communicatie en voorlichting (GGz)\nTestproject.vpp://diagram/ObqVuEmGAqAEEUFf', 'Communicatie en voorlichting (GGz)', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|302.0|74.0|120.0|80.0|ArchiMateBusinessProcess_ZLKVuEmGAqAEET7f.html|ArchiMateBusinessProcess_ZLKVuEmGAqAEET7f.html|1bqVuEmGAqAEEUFl" id="option1bqVuEmGAqAEEUFl">Fondsenwerving en sponsoring : Business Process</option>
+<option value="shape|38.0|74.0|120.0|80.0|ArchiMateBusinessProcess_kHKVuEmGAqAEET77.html|ArchiMateBusinessProcess_kHKVuEmGAqAEET77.html|NbqVuEmGAqAEEUFn" id="optionNbqVuEmGAqAEEUFn">Voorlichten in- en extern : Business Process</option>
+<option value="shape|170.0|74.0|120.0|80.0|ArchiMateBusinessProcess_wdKVuEmGAqAEET69.html|ArchiMateBusinessProcess_wdKVuEmGAqAEET69.html|tbqVuEmGAqAEEUFp" id="optiontbqVuEmGAqAEEUFp">Bemiddeling klachten : Business Process</option>
+<option value="shape|302.0|170.0|120.0|80.0|ArchiMateBusinessObject__IqVuEmGAqAEET9Y.html|ArchiMateBusinessObject__IqVuEmGAqAEET9Y.html|dbqVuEmGAqAEEUFr" id="optiondbqVuEmGAqAEEUFr">Klacht : Business Object</option>
+<option value="shape|170.0|170.0|120.0|80.0|ArchiMateBusinessObject_I4qVuEmGAqAEET9r.html|ArchiMateBusinessObject_I4qVuEmGAqAEET9r.html|9bqVuEmGAqAEEUFt" id="option9bqVuEmGAqAEEUFt">Nieuwsbericht : Business Object</option>
+<option value="shape|38.0|170.0|120.0|80.0|ArchiMateBusinessObject_SoqVuEmGAqAEET9e.html|ArchiMateBusinessObject_SoqVuEmGAqAEET9e.html|9bqVuEmGAqAEEUFv" id="option9bqVuEmGAqAEEUFv">Folders en brochures : Business Object</option>
+<option value="shape|26.0|38.0|409.0|253.0|ArchiMateBusinessFunction_YEqVuEmGAqAEET9z.html|ArchiMateBusinessFunction_YEqVuEmGAqAEET9z.html|VbqVuEmGAqAEEUFj" id="optionVbqVuEmGAqAEEUFj">Communicatie en voorlichting : Business Function</option>
+<option value="shape|2.0|2.0|457.0|301.0|ArchiMateGrouping_MMqVuEmGAqAEET_S.html|ArchiMateGrouping_MMqVuEmGAqAEET_S.html|VbqVuEmGAqAEEUFh" id="optionVbqVuEmGAqAEEUFh">Referentie Domeinmodel Geestelijkegezondheidszorg v1.0 : Grouping</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/Communicatie_en_voorlichting_GGz.png" usemap="#diagram_map" class="Image" width="463" height="307"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="-34, -22, 66, 78" coords2="-34, -22, 66, 78" shape="rect" alt=":Access" id="areadiagram_map_IIaVuEmGAqAEEUR6_default" href="ArchiMateAccess_p8qVuEmGAqAEET_t.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-34, -22, 66, 78" coords2="-34, -22, 66, 78" shape="rect" alt=":Access" id="areadiagram_map_IIaVuEmGAqAEEUR8_default" href="ArchiMateAccess_vaqVuEmGAqAEET_o.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-34, -22, 66, 78" coords2="-34, -22, 66, 78" shape="rect" alt=":Access" id="areadiagram_map_IIaVuEmGAqAEEUR._default" href="ArchiMateAccess_P8qVuEmGAqAEET_w.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-34, -22, 66, 78" coords2="-34, -22, 66, 78" shape="rect" alt=":Composition" id="areadiagram_map_IIaVuEmGAqAEEUSA_default" href="ArchiMateComposition_LZqVuEmGAqAEEUBh.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-34, -22, 66, 78" coords2="-34, -22, 66, 78" shape="rect" alt=":Composition" id="areadiagram_map_IIaVuEmGAqAEEUSC_default" href="ArchiMateComposition_6ZqVuEmGAqAEEUBe.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-34, -22, 66, 78" coords2="-34, -22, 66, 78" shape="rect" alt=":Composition" id="areadiagram_map_oIaVuEmGAqAEEUSE_default" href="ArchiMateComposition_4eqVuEmGAqAEEUAg.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-34, -22, 66, 78" coords2="-34, -22, 66, 78" shape="rect" alt=":Composition" id="areadiagram_map_oIaVuEmGAqAEEUSG_default" href="ArchiMateComposition_GuqVuEmGAqAEEUAb.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Verwerven van additionele gelden en onderhouden sponsorrelaties.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="302, 74, 422, 154" coords2="302, 74, 422, 154" shape="rect" alt="Fondsenwerving en sponsoring:Business Process" id="areadiagram_map_1bqVuEmGAqAEEUFl_default" href="ArchiMateBusinessProcess_ZLKVuEmGAqAEET7f.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Samenstellen, vergaren en verstrekken van informatie over en aan 
+    pati&amp;#235;nten, bezoekers, zorgprofessionals, studenten, onderzoekers, 
+    medewerkers, pers, etc.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="38, 74, 158, 154" coords2="38, 74, 158, 154" shape="rect" alt="Voorlichten in- en extern:Business Process" id="areadiagram_map_NbqVuEmGAqAEEUFn_default" href="ArchiMateBusinessProcess_kHKVuEmGAqAEET77.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Verwerken van klachten en bewaking van de afhandeling daarvan.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="170, 74, 290, 154" coords2="170, 74, 290, 154" shape="rect" alt="Bemiddeling klachten:Business Process" id="areadiagram_map_tbqVuEmGAqAEEUFp_default" href="ArchiMateBusinessProcess_wdKVuEmGAqAEET69.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Alle meldingen die klachten betreffen over geleverde zorg of diensten.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="302, 170, 422, 250" coords2="302, 170, 422, 250" shape="rect" alt="Klacht:Business Object" id="areadiagram_map_dbqVuEmGAqAEEUFr_default" href="ArchiMateBusinessObject__IqVuEmGAqAEET9Y.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Interne of externe berichten die gecommuniceerd kunnen worden door middel 
+    van persberichten, email, intranet, website, organisatiemagazines, 
+    personeelskrant, et cetera.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="170, 170, 290, 250" coords2="170, 170, 290, 250" shape="rect" alt="Nieuwsbericht:Business Object" id="areadiagram_map_9bqVuEmGAqAEEUFt_default" href="ArchiMateBusinessObject_I4qVuEmGAqAEET9r.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Documenten met medische informatie ter ondersteuning van het primaire 
+    proces.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="38, 170, 158, 250" coords2="38, 170, 158, 250" shape="rect" alt="Folders en brochures:Business Object" id="areadiagram_map_9bqVuEmGAqAEEUFv_default" href="ArchiMateBusinessObject_SoqVuEmGAqAEET9e.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten ten behoeve van communicatie met en 
+    voorlichting aan pati&amp;#235;nten, bezoekers en zorgprofessionals.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="26, 38, 435, 291" coords2="26, 38, 435, 291" shape="rect" alt="Communicatie en voorlichting:Business Function" id="areadiagram_map_VbqVuEmGAqAEEUFj_default" href="ArchiMateBusinessFunction_YEqVuEmGAqAEET9z.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','26, 38, 435, 291',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_ObqVuEmGAqAEEUFf.html/Communicatie en voorlichting (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '26, 38, 435, 291'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="2, 2, 459, 303" coords2="2, 2, 459, 303" shape="rect" alt="Referentie Domeinmodel Geestelijkegezondheidszorg v1.0:Grouping" id="areadiagram_map_VbqVuEmGAqAEEUFh_default" href="ArchiMateGrouping_MMqVuEmGAqAEET_S.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<p>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0">
+			<tr>
+				<td>
+<span class="TableContent Documentation"><html>
+  <head>
+    
+  </head>
+  <body>
+    Dit domein bevat de activiteiten ten behoeve van communicatie met en 
+    voorlichting aan pati&#235;nten, bezoekers en zorgprofessionals.
+  </body>
+</html>
+</span>				</td>
+			</tr>
+		</table>
+	</p>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		Testproject	</div>
+</body>
+</html>

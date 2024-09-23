@@ -1,0 +1,300 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>ArchiMate Diagram - Bedrijfsondersteuning - Veiligheid, Kwaliteit, Arbo, en Milieu (GGz))</title>
+	<META name="Description" content="Activiteiten met betrekking tot het bewaken en optimaliseren van Veiligheid, kwaliteit, arbeidsomstandigheden en milieuaspecten binnen de organisatie."/>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		Testproject	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p>
+<a href="Model_Bs1auEmGAqAEEQxe.html" class="PageParentTitle">Generieke architectuur : Model</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_Hfb6uEmGAqAEEQxu.html" class="PageParentTitle">Architectuur : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_G_HTuEmGAqAEEVGm.html" class="PageParentTitle">Business architectuur : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_ap_AeEmGAqAEETJy.html" class="PageParentTitle">Geestelijke gezondheidszorg : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_ez1OuEmGAqAEET5B.html" class="PageParentTitle">Zorgprocessen - Geestelijke gezondheidszorg : Package</a>	</p>
+	<p class="PageTitle">
+<a href="ArchiMateBusinessFunction_yUqVuEmGAqAEET_E.html"><img style="border: 1px solid #C0C0C0; " src="../images/icons/Breadcrumb_JumpToDiagram.png" alt="Referenced by Veiligheid, Kwaliteit, Arbo, en Milieu"/></a>		<span id="PageTitleText">
+			ArchiMate Diagram - Bedrijfsondersteuning - Veiligheid, Kwaliteit, Arbo, en Milieu (GGz))		</span>
+<a onclick="javascript: showVpLink('Testproject.vpp://diagram/gvqVuEmGAqAEEUK5', 'Bedrijfsondersteuning - Veiligheid, Kwaliteit, Arbo, en Milieu (GGz))\nTestproject.vpp://diagram/gvqVuEmGAqAEEUK5', 'Bedrijfsondersteuning - Veiligheid, Kwaliteit, Arbo, en Milieu (GGz))', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|170.0|74.0|120.0|80.0|ArchiMateBusinessProcess_3NKVuEmGAqAEET61.html|ArchiMateBusinessProcess_3NKVuEmGAqAEET61.html|0vqVuEmGAqAEEUK_" id="option0vqVuEmGAqAEEUK_">Bewaken Arbeidsomstandigheden (ARBO) : Business Process</option>
+<option value="shape|35.0|74.0|120.0|80.0|ArchiMateBusinessProcess_9tKVuEmGAqAEET67.html|ArchiMateBusinessProcess_9tKVuEmGAqAEET67.html|0vqVuEmGAqAEEULB" id="option0vqVuEmGAqAEEULB">Bewaken kwaliteit en veiligheid : Business Process</option>
+<option value="shape|302.0|74.0|120.0|80.0|ArchiMateBusinessProcess_K7KVuEmGAqAEET71.html|ArchiMateBusinessProcess_K7KVuEmGAqAEET71.html|MvqVuEmGAqAEEULD" id="optionMvqVuEmGAqAEEULD">Bewaken Milieu : Business Process</option>
+<option value="shape|38.0|170.0|120.0|80.0|ArchiMateBusinessObject_1wqVuEmGAqAEET9S.html|ArchiMateBusinessObject_1wqVuEmGAqAEET9S.html|MvqVuEmGAqAEEULF" id="optionMvqVuEmGAqAEEULF">VKAM-plan : Business Object</option>
+<option value="shape|173.0|170.0|120.0|80.0|ArchiMateBusinessObject_jIqVuEmGAqAEET9a.html|ArchiMateBusinessObject_jIqVuEmGAqAEET9a.html|svqVuEmGAqAEEULH" id="optionsvqVuEmGAqAEEULH">VKAM-advies : Business Object</option>
+<option value="shape|305.0|170.0|120.0|80.0|ArchiMateBusinessObject_QnKVuEmGAqAEET8C.html|ArchiMateBusinessObject_QnKVuEmGAqAEET8C.html|svqVuEmGAqAEEULJ" id="optionsvqVuEmGAqAEEULJ">Bevinding : Business Object</option>
+<option value="shape|434.0|170.0|120.0|80.0|ArchiMateBusinessObject_xAqVuEmGAqAEET87.html|ArchiMateBusinessObject_xAqVuEmGAqAEET87.html|svqVuEmGAqAEEULL" id="optionsvqVuEmGAqAEEULL">Risicoanalyse : Business Object</option>
+<option value="shape|566.0|170.0|120.0|80.0|ArchiMateBusinessObject_ZYqVuEmGAqAEET9o.html|ArchiMateBusinessObject_ZYqVuEmGAqAEET9o.html|cvqVuEmGAqAEEULN" id="optioncvqVuEmGAqAEEULN">Wettelijke VKAM-registraties : Business Object</option>
+<option value="shape|26.0|38.0|673.0|253.0|ArchiMateBusinessFunction_yUqVuEmGAqAEET_E.html|ArchiMateBusinessFunction_yUqVuEmGAqAEET_E.html|UvqVuEmGAqAEEUK9" id="optionUvqVuEmGAqAEEUK9">Veiligheid, Kwaliteit, Arbo, en Milieu : Business Function</option>
+<option value="shape|2.0|2.0|721.0|313.0|ArchiMateGrouping_MMqVuEmGAqAEET_S.html|ArchiMateGrouping_MMqVuEmGAqAEET_S.html|UvqVuEmGAqAEEUK7" id="optionUvqVuEmGAqAEEUK7">Referentie Domeinmodel Geestelijkegezondheidszorg v1.0 : Grouping</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/Bedrijfsondersteuning_Veiligheid_Kwaliteit_Arbo_en_Milieu_GGz.png" usemap="#diagram_map" class="Image" width="727" height="319"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="-34, -34, 66, 66" coords2="-34, -34, 66, 66" shape="rect" alt=":Composition" id="areadiagram_map_iIaVuEmGAqAEEUVs_default" href="ArchiMateComposition__VqVuEmGAqAEEUB8.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-34, -34, 66, 66" coords2="-34, -34, 66, 66" shape="rect" alt=":Composition" id="areadiagram_map_iIaVuEmGAqAEEUVu_default" href="ArchiMateComposition_XFqVuEmGAqAEEUBx.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-34, -34, 66, 66" coords2="-34, -34, 66, 66" shape="rect" alt=":Access" id="areadiagram_map_iIaVuEmGAqAEEUVw_default" href="ArchiMateAccess_3mqVuEmGAqAEET__.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-34, -34, 66, 66" coords2="-34, -34, 66, 66" shape="rect" alt=":Access" id="areadiagram_map_iIaVuEmGAqAEEUVy_default" href="ArchiMateAccess_KKqVuEmGAqAEET_T.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-34, -34, 66, 66" coords2="-34, -34, 66, 66" shape="rect" alt=":Access" id="areadiagram_map_iIaVuEmGAqAEEUV0_default" href="ArchiMateAccess_BaqVuEmGAqAEET_l.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-34, -34, 66, 66" coords2="-34, -34, 66, 66" shape="rect" alt=":Composition" id="areadiagram_map_SIaVuEmGAqAEEUV2_default" href="ArchiMateComposition_yhqVuEmGAqAEEUA3.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-34, -34, 66, 66" coords2="-34, -34, 66, 66" shape="rect" alt=":Access" id="areadiagram_map_SIaVuEmGAqAEEUV4_default" href="ArchiMateAccess_EGqVuEmGAqAEET_x.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-34, -34, 66, 66" coords2="-34, -34, 66, 66" shape="rect" alt=":Access" id="areadiagram_map_SIaVuEmGAqAEEUV6_default" href="ArchiMateAccess_IyqVuEmGAqAEET_J.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-34, -34, 66, 66" coords2="-34, -34, 66, 66" shape="rect" alt=":Composition" id="areadiagram_map_SIaVuEmGAqAEEUV8_default" href="ArchiMateComposition_e5qVuEmGAqAEEUBm.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Adviseren over en beheren van risico''s op het gebied van de 
+    arbeidsomstandigheden. Omvat ook BHV, preventie, keuringen, 
+    verzuimbegeleiding en re-integratie.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="170, 74, 290, 154" coords2="170, 74, 290, 154" shape="rect" alt="Bewaken Arbeidsomstandigheden (ARBO):Business Process" id="areadiagram_map_0vqVuEmGAqAEEUK__default" href="ArchiMateBusinessProcess_3NKVuEmGAqAEET61.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Het optimaliseren van de kwaliteit en de veiligheid van een product, 
+    productieproces, dienst, of locatie. Omvat ook adviseren, 
+    risicomanagement, pati&amp;#235;ntveiligheid en informatiebeveiliging.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="35, 74, 155, 154" coords2="35, 74, 155, 154" shape="rect" alt="Bewaken kwaliteit en veiligheid:Business Process" id="areadiagram_map_0vqVuEmGAqAEEULB_default" href="ArchiMateBusinessProcess_9tKVuEmGAqAEET67.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Handhaving van vergunningen en wet- en regelgeving m.b.t. het milieu. 
+    Omvat ook de registratie van gevaarlijke stoffen.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="302, 74, 422, 154" coords2="302, 74, 422, 154" shape="rect" alt="Bewaken Milieu:Business Process" id="areadiagram_map_MvqVuEmGAqAEEULD_default" href="ArchiMateBusinessProcess_K7KVuEmGAqAEET71.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Plannen op het gebied van VKAM, bijvoorbeeld veiligheidsplan, rampenplan 
+    en kwaliteitsplan.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="38, 170, 158, 250" coords2="38, 170, 158, 250" shape="rect" alt="VKAM-plan:Business Object" id="areadiagram_map_MvqVuEmGAqAEEULF_default" href="ArchiMateBusinessObject_1wqVuEmGAqAEET9S.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Adviseren op VKAM-vakgebied, zoals bij de aanschaf en implementatie van 
+    nieuwe apparatuur en hulpmiddelen, (verzuim)preventie, et cetera.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="173, 170, 293, 250" coords2="173, 170, 293, 250" shape="rect" alt="VKAM-advies:Business Object" id="areadiagram_map_svqVuEmGAqAEEULH_default" href="ArchiMateBusinessObject_jIqVuEmGAqAEET9a.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Resultaten als gevolg van uitgevoerde toetsing van 
+    processen/producten/diensten/etc. binnen de instelling. Niet alleen de 
+    bevinding zelf wordt vastgelegd, ook de status en de opvolging worden 
+    meegenomen. Bijvoorbeeld: kwaliteitsmetingen en -controles van medische 
+    apparatuur.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="305, 170, 425, 250" coords2="305, 170, 425, 250" shape="rect" alt="Bevinding:Business Object" id="areadiagram_map_svqVuEmGAqAEEULJ_default" href="ArchiMateBusinessObject_QnKVuEmGAqAEET8C.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Beoordeling van de waarschijnlijkheid en de eventuele gevolgen van het 
+    optreden van diverse soorten gevaar in en rond de instelling, inclusief 
+    gevaar dat kan worden veroorzaakt door de wisselwerking tussen 
+    afzonderlijke activiteiten en aanwezige installaties.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="434, 170, 554, 250" coords2="434, 170, 554, 250" shape="rect" alt="Risicoanalyse:Business Object" id="areadiagram_map_svqVuEmGAqAEEULL_default" href="ArchiMateBusinessObject_xAqVuEmGAqAEET87.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Vastlegging van gegevens op basis van wettelijke verplichtingen voor VKAM 
+    zoals gevaarlijke stoffenregistratie, stralingshygi&amp;#235;ne en 
+    milieuregistratie.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="566, 170, 686, 250" coords2="566, 170, 686, 250" shape="rect" alt="Wettelijke VKAM-registraties:Business Object" id="areadiagram_map_cvqVuEmGAqAEEULN_default" href="ArchiMateBusinessObject_ZYqVuEmGAqAEET9o.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Activiteiten met betrekking tot het bewaken en optimaliseren van 
+    Veiligheid, kwaliteit, arbeidsomstandigheden en milieuaspecten binnen de 
+    organisatie.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="26, 38, 699, 291" coords2="26, 38, 699, 291" shape="rect" alt="Veiligheid, Kwaliteit, Arbo, en Milieu:Business Function" id="areadiagram_map_UvqVuEmGAqAEEUK9_default" href="ArchiMateBusinessFunction_yUqVuEmGAqAEET_E.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','26, 38, 699, 291',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_gvqVuEmGAqAEEUK5.html/Bedrijfsondersteuning - Veiligheid, Kwaliteit, Arbo, en Milieu (GGz))/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '26, 38, 699, 291'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="2, 2, 723, 315" coords2="2, 2, 723, 315" shape="rect" alt="Referentie Domeinmodel Geestelijkegezondheidszorg v1.0:Grouping" id="areadiagram_map_UvqVuEmGAqAEEUK7_default" href="ArchiMateGrouping_MMqVuEmGAqAEET_S.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<p>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0">
+			<tr>
+				<td>
+<span class="TableContent Documentation"><html>
+  <head>
+    
+  </head>
+  <body>
+    Activiteiten met betrekking tot het bewaken en optimaliseren van 
+    Veiligheid, kwaliteit, arbeidsomstandigheden en milieuaspecten binnen de 
+    organisatie.
+  </body>
+</html>
+</span>				</td>
+			</tr>
+		</table>
+	</p>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		Testproject	</div>
+</body>
+</html>

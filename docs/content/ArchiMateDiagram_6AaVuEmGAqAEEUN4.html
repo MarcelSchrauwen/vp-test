@@ -1,0 +1,336 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>ArchiMate Diagram - Zorgverlening - Behandeling (GGz)</title>
+	<META name="Description" content="Dit domein bevat de activiteiten op het gebied van het uitvoeren, meten en bijstellen van de behandeling(en) en begeleiding van de patiënt daarbij."/>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		Testproject	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p>
+<a href="Model_Bs1auEmGAqAEEQxe.html" class="PageParentTitle">Generieke architectuur : Model</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_Hfb6uEmGAqAEEQxu.html" class="PageParentTitle">Architectuur : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_G_HTuEmGAqAEEVGm.html" class="PageParentTitle">Business architectuur : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_ap_AeEmGAqAEETJy.html" class="PageParentTitle">Geestelijke gezondheidszorg : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_ez1OuEmGAqAEET5B.html" class="PageParentTitle">Zorgprocessen - Geestelijke gezondheidszorg : Package</a>	</p>
+	<p class="PageTitle">
+<a href="ArchiMateBusinessFunction_r4qVuEmGAqAEET9x.html"><img style="border: 1px solid #C0C0C0; " src="../images/icons/Breadcrumb_JumpToDiagram.png" alt="Referenced by Behandeling"/></a>		<span id="PageTitleText">
+			ArchiMate Diagram - Zorgverlening - Behandeling (GGz)		</span>
+<a onclick="javascript: showVpLink('Testproject.vpp://diagram/6AaVuEmGAqAEEUN4', 'Zorgverlening - Behandeling (GGz)\nTestproject.vpp://diagram/6AaVuEmGAqAEEUN4', 'Zorgverlening - Behandeling (GGz)', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|446.0|74.0|120.0|80.0|ArchiMateBusinessProcess_V9KVuEmGAqAEET7I.html|ArchiMateBusinessProcess_V9KVuEmGAqAEET7I.html|RAaVuEmGAqAEEUN." id="optionRAaVuEmGAqAEEUN.">Meten van behandeleffectiviteit : Business Process</option>
+<option value="shape|578.0|74.0|120.0|80.0|ArchiMateBusinessProcess_urKVuEmGAqAEET7m.html|ArchiMateBusinessProcess_urKVuEmGAqAEET7m.html|xAaVuEmGAqAEEUOA" id="optionxAaVuEmGAqAEEUOA">Bijstellen zorg : Business Process</option>
+<option value="shape|182.0|74.0|120.0|80.0|ArchiMateBusinessProcess_HtKVuEmGAqAEET68.html|ArchiMateBusinessProcess_HtKVuEmGAqAEET68.html|JAaVuEmGAqAEEUOC" id="optionJAaVuEmGAqAEEUOC">Uitvoeren begeleiding : Business Process</option>
+<option value="shape|711.0|74.0|120.0|80.0|ArchiMateBusinessProcess_F7KVuEmGAqAEET73.html|ArchiMateBusinessProcess_F7KVuEmGAqAEET73.html|JAaVuEmGAqAEEUOE" id="optionJAaVuEmGAqAEEUOE">Periodiek evalueren behandeling : Business Process</option>
+<option value="shape|314.0|74.0|120.0|80.0|ArchiMateBusinessProcess_jbKVuEmGAqAEET7x.html|ArchiMateBusinessProcess_jbKVuEmGAqAEET7x.html|JAaVuEmGAqAEEUOG" id="optionJAaVuEmGAqAEEUOG">Uitvoeren bemoeizorg : Business Process</option>
+<option value="shape|44.0|74.0|120.0|80.0|ArchiMateBusinessProcess_bzKVuEmGAqAEET7Z.html|ArchiMateBusinessProcess_bzKVuEmGAqAEET7Z.html|pAaVuEmGAqAEEUOI" id="optionpAaVuEmGAqAEEUOI">Uitvoeren behandeling : Business Process</option>
+<option value="shape|446.0|170.0|120.0|80.0|ArchiMateBusinessObject_UwqVuEmGAqAEET9O.html|ArchiMateBusinessObject_UwqVuEmGAqAEET9O.html|dAaVuEmGAqAEEUON" id="optiondAaVuEmGAqAEEUON">ROM-meting : Business Object</option>
+<option value="shape|314.0|170.0|120.0|80.0|ArchiMateBusinessObject_MXKVuEmGAqAEET8K.html|ArchiMateBusinessObject_MXKVuEmGAqAEET8K.html|dAaVuEmGAqAEEUOP" id="optiondAaVuEmGAqAEEUOP">Complicatie : Business Object</option>
+<option value="shape|176.0|170.0|120.0|80.0|ArchiMateBusinessObject_TnKVuEmGAqAEET8H.html|ArchiMateBusinessObject_TnKVuEmGAqAEET8H.html|DAaVuEmGAqAEEUOR" id="optionDAaVuEmGAqAEEUOR">Signaal ihkv zorg : Business Object</option>
+<option value="shape|44.0|170.0|120.0|80.0|ArchiMateBusinessObject_nHKVuEmGAqAEET8B.html|ArchiMateBusinessObject_nHKVuEmGAqAEET8B.html|DAaVuEmGAqAEEUOT" id="optionDAaVuEmGAqAEEUOT">Behandeling : Business Object</option>
+<option value="shape|26.0|38.0|829.0|253.0|ArchiMateBusinessFunction_r4qVuEmGAqAEET9x.html|ArchiMateBusinessFunction_r4qVuEmGAqAEET9x.html|RAaVuEmGAqAEEUN8" id="optionRAaVuEmGAqAEEUN8">Behandeling : Business Function</option>
+<option value="shape|2.0|2.0|872.0|313.0|ArchiMateGrouping_MMqVuEmGAqAEET_S.html|ArchiMateGrouping_MMqVuEmGAqAEET_S.html|RAaVuEmGAqAEEUN6" id="optionRAaVuEmGAqAEEUN6">Referentie Domeinmodel Geestelijkegezondheidszorg v1.0 : Grouping</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/Zorgverlening_Behandeling_GGz.png" usemap="#diagram_map" class="Image" width="878" height="319"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="-22, -22, 78, 78" coords2="-22, -22, 78, 78" shape="rect" alt=":Composition" id="areadiagram_map_eIaVuEmGAqAEEUXs_default" href="ArchiMateComposition_DOqVuEmGAqAEEUAW.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -22, 78, 78" coords2="-22, -22, 78, 78" shape="rect" alt=":Access" id="areadiagram_map_BIaVuEmGAqAEEUXu_default" href="ArchiMateAccess_JyqVuEmGAqAEET_N.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -22, 78, 78" coords2="-22, -22, 78, 78" shape="rect" alt=":Composition" id="areadiagram_map_BIaVuEmGAqAEEUXw_default" href="ArchiMateComposition_i2qVuEmGAqAEEUAK.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -22, 78, 78" coords2="-22, -22, 78, 78" shape="rect" alt=":Access" id="areadiagram_map_BIaVuEmGAqAEEUXy_default" href="ArchiMateAccess_jWqVuEmGAqAEEUAG.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -22, 78, 78" coords2="-22, -22, 78, 78" shape="rect" alt=":Access" id="areadiagram_map_BIaVuEmGAqAEEUX0_default" href="ArchiMateAccess_qyqVuEmGAqAEET_L.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -22, 78, 78" coords2="-22, -22, 78, 78" shape="rect" alt=":Composition" id="areadiagram_map_BIaVuEmGAqAEEUX2_default" href="ArchiMateComposition_9VqVuEmGAqAEEUB_.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -22, 78, 78" coords2="-22, -22, 78, 78" shape="rect" alt=":Composition" id="areadiagram_map_BIaVuEmGAqAEEUX4_default" href="ArchiMateComposition__xqVuEmGAqAEEUBI.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -22, 78, 78" coords2="-22, -22, 78, 78" shape="rect" alt=":Access" id="areadiagram_map_BIaVuEmGAqAEEUX6_default" href="ArchiMateAccess_1KqVuEmGAqAEET_W.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -22, 78, 78" coords2="-22, -22, 78, 78" shape="rect" alt=":Composition" id="areadiagram_map_BIaVuEmGAqAEEUX8_default" href="ArchiMateComposition_WNqVuEmGAqAEEUCL.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -22, 78, 78" coords2="-22, -22, 78, 78" shape="rect" alt=":Composition" id="areadiagram_map_BIaVuEmGAqAEEUX._default" href="ArchiMateComposition_ttqVuEmGAqAEEUCV.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-22, -22, 78, 78" coords2="-22, -22, 78, 78" shape="rect" alt=":Composition" id="areadiagram_map_BIaVuEmGAqAEEUYA_default" href="ArchiMateComposition_vNqVuEmGAqAEEUCP.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Het meten van de (psychische) toestand van de pati&amp;#235;nt voor, tijdens en na 
+    de behandeling, middels het routinematig monitoren van resultaten van een 
+    behandeling (bijvoorbeeld door ROM-metingen). Hierbij hoort ook de 
+    initi&amp;#235;le meting voor de start van de behandeling.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="446, 74, 566, 154" coords2="446, 74, 566, 154" shape="rect" alt="Meten van behandeleffectiviteit:Business Process" id="areadiagram_map_RAaVuEmGAqAEEUN._default" href="ArchiMateBusinessProcess_V9KVuEmGAqAEET7I.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Ad hoc bijstellen van zorg voor de pati&amp;#235;nt, incidentele zorgmomenten, 
+    incidenteel inschakelen disciplines etc. zoals bijvoorbeeld bij het 
+    verlenen van FACT zorg of SPITS. Ook wel: reageren op de actuele situatie 
+    zonder daar een formeel multidisciplinair gesprek over aan te gaan.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="578, 74, 698, 154" coords2="578, 74, 698, 154" shape="rect" alt="Bijstellen zorg:Business Process" id="areadiagram_map_xAaVuEmGAqAEEUOA_default" href="ArchiMateBusinessProcess_urKVuEmGAqAEET7m.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Het ondersteunen van de pati&amp;#235;nt bij de ondersteunende en activerende 
+    begeleiding en dagactiviteiten.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="182, 74, 302, 154" coords2="182, 74, 302, 154" shape="rect" alt="Uitvoeren begeleiding:Business Process" id="areadiagram_map_JAaVuEmGAqAEEUOC_default" href="ArchiMateBusinessProcess_HtKVuEmGAqAEET68.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Periodiek beoordelen van effecten en resultaat van een behandeling en 
+    eventueel aanpassen van het behandelplan. Dit is mede als voorbereiding 
+    van multidisciplinaire bespreking van de pati&amp;#235;nt (minimaal 2 keer per 
+    jaar).
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="711, 74, 831, 154" coords2="711, 74, 831, 154" shape="rect" alt="Periodiek evalueren behandeling:Business Process" id="areadiagram_map_JAaVuEmGAqAEEUOE_default" href="ArchiMateBusinessProcess_F7KVuEmGAqAEET73.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Ambulante zorg voor mensen in psychische of sociale nood die hulp nodig 
+    hebben maar dat zelf niet willen, kunnen of durven vragen; vaak is er 
+    sprake van meerdere problemen zoals psychiatrische problemen, ernstige 
+    zelfverwaarlozing en vervuiling, drugs- of alcoholverslaving, overlast, 
+    dakloosheid, schulden en/of dreigende huisuitzetting; de pati&amp;#235;nten worden 
+    actief opgespoord door de hulpverleners en worden aangespoord om hulp te 
+    accepteren.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="314, 74, 434, 154" coords2="314, 74, 434, 154" shape="rect" alt="Uitvoeren bemoeizorg:Business Process" id="areadiagram_map_JAaVuEmGAqAEEUOG_default" href="ArchiMateBusinessProcess_jbKVuEmGAqAEET7x.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Het uitvoeren van de behandeling van een pati&amp;#235;nt op basis van een 
+    behandelplan, gericht op herstel, voorkoming van verergering van een 
+    aandoening of de verlichting van symptomen. Het toepassen van zowel 
+    middelen en maatregelen als somatische zorg gerelateerd aan verblijf valt 
+    ook binnen deze bedrijfsactiviteit.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="44, 74, 164, 154" coords2="44, 74, 164, 154" shape="rect" alt="Uitvoeren behandeling:Business Process" id="areadiagram_map_pAaVuEmGAqAEEUOI_default" href="ArchiMateBusinessProcess_bzKVuEmGAqAEET7Z.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Routine Outcome Monitoring (afgekort als ROM) is de methodiek in de 
+    geestelijke gezondheidszorg waarbij regelmatig metingen gedaan worden van 
+    de toestand van de pati&amp;#235;nten met het oog op evaluatie en eventueel 
+    bijsturing van de behandeling.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="446, 170, 566, 250" coords2="446, 170, 566, 250" shape="rect" alt="ROM-meting:Business Object" id="areadiagram_map_dAaVuEmGAqAEEUON_default" href="ArchiMateBusinessObject_UwqVuEmGAqAEET9O.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Onbedoelde en ongewenste uitkomst tijdens of volgend op het handelen van 
+    een zorgverlener, die voor de gezondheid van de pati&amp;#235;nt zodanig nadelig 
+    zijn dat aanpassing van het medisch (be)handelen noodzakelijk is, dan wel 
+    dat er sprake is van onherstelbare schade.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="314, 170, 434, 250" coords2="314, 170, 434, 250" shape="rect" alt="Complicatie:Business Object" id="areadiagram_map_dAaVuEmGAqAEEUOP_default" href="ArchiMateBusinessObject_MXKVuEmGAqAEET8K.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Een zorggerelateerd signaal in algemene zin, met als doel om iemand actief 
+    van iets op de hoogte te stellen.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="176, 170, 296, 250" coords2="176, 170, 296, 250" shape="rect" alt="Signaal ihkv zorg:Business Object" id="areadiagram_map_DAaVuEmGAqAEEUOR_default" href="ArchiMateBusinessObject_TnKVuEmGAqAEET8H.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    &amp;quot;Behandeling van specifiek psychische, psychiatrische, medische of 
+    gedragswetenschappelijke aard, gericht op herstel of voorkoming van 
+    verergering van een lichamelijk of psychische aandoening of beperking van 
+    gedragsproblemen in verband met zo''n aandoening. De invulling hiervan is 
+    specialismenspecifiek, maar kan wel over meerdere disciplines en 
+    specialismen heen gaan.&amp;quot;
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="44, 170, 164, 250" coords2="44, 170, 164, 250" shape="rect" alt="Behandeling:Business Object" id="areadiagram_map_DAaVuEmGAqAEEUOT_default" href="ArchiMateBusinessObject_nHKVuEmGAqAEET8B.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten op het gebied van het uitvoeren, meten en 
+    bijstellen van de behandeling(en) en begeleiding van de pati&amp;#235;nt daarbij.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="26, 38, 855, 291" coords2="26, 38, 855, 291" shape="rect" alt="Behandeling:Business Function" id="areadiagram_map_RAaVuEmGAqAEEUN8_default" href="ArchiMateBusinessFunction_r4qVuEmGAqAEET9x.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','26, 38, 855, 291',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_6AaVuEmGAqAEEUN4.html/Zorgverlening - Behandeling (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '26, 38, 855, 291'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="2, 2, 874, 315" coords2="2, 2, 874, 315" shape="rect" alt="Referentie Domeinmodel Geestelijkegezondheidszorg v1.0:Grouping" id="areadiagram_map_RAaVuEmGAqAEEUN6_default" href="ArchiMateGrouping_MMqVuEmGAqAEET_S.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<p>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0">
+			<tr>
+				<td>
+<span class="TableContent Documentation"><html>
+  <head>
+    
+  </head>
+  <body>
+    Dit domein bevat de activiteiten op het gebied van het uitvoeren, meten en 
+    bijstellen van de behandeling(en) en begeleiding van de pati&#235;nt daarbij.
+  </body>
+</html>
+</span>				</td>
+			</tr>
+		</table>
+	</p>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		Testproject	</div>
+</body>
+</html>

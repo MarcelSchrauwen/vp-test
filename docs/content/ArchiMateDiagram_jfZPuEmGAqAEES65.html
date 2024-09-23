@@ -1,0 +1,193 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>ArchiMate Diagram - Afsprakenstelsels</title>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		Testproject	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p>
+<a href="Model_Bs1auEmGAqAEEQxe.html" class="PageParentTitle">Generieke architectuur : Model</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_Hfb6uEmGAqAEEQxu.html" class="PageParentTitle">Architectuur : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_G_HTuEmGAqAEEVGm.html" class="PageParentTitle">Business architectuur : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_uql3uEmGAqAEES59.html" class="PageParentTitle">Interopeabiliteitsdiensten : Package</a>	</p>
+	<p class="PageTitle">
+		<span id="PageTitleText">
+			ArchiMate Diagram - Afsprakenstelsels		</span>
+<a onclick="javascript: showVpLink('Testproject.vpp://diagram/jfZPuEmGAqAEES65', 'Afsprakenstelsels\nTestproject.vpp://diagram/jfZPuEmGAqAEES65', 'Afsprakenstelsels', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|2.0|2.0|118.0|71.0|ArchiMateProduct_70VPuEmGAqAEES7K.html|ArchiMateProduct_70VPuEmGAqAEES7K.html|70VPuEmGAqAEES7J" id="option70VPuEmGAqAEES7J">AORTA-LSP : Product</option>
+<option value="shape|276.0|2.0|116.0|71.0|ArchiMateProduct_im1PuEmGAqAEES7U.html|ArchiMateProduct_im1PuEmGAqAEES7U.html|im1PuEmGAqAEES7T" id="optionim1PuEmGAqAEES7T">Koppeltaal : Product</option>
+<option value="shape|139.0|2.0|118.0|72.0|ArchiMateProduct_LHOvuEmGAqAEES8_.html|ArchiMateProduct_LHOvuEmGAqAEES8_.html|LHOvuEmGAqAEES8." id="optionLHOvuEmGAqAEES8.">Mitz : Product</option>
+<option value="shape|114.0|146.0|155.0|108.0|Callout_sQHQeEmGAqAEETQ3.html|Callout_sQHQeEmGAqAEETQ3.html|sQHQeEmGAqAEETQ2" id="optionsQHQeEmGAqAEETQ2">Unnamed Callout : Callout</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/Afsprakenstelsels.png" usemap="#diagram_map" class="Image" width="396" height="258"/>
+					<map name="diagram_map">
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:11px;margin-right:0;font-family:Dialog;margin-left:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+      Dit is uiteraard maar een beperkte weergave
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="114, 146, 269, 254" coords2="114, 146, 269, 254" shape="rect" alt="Dit is uiteraard maar een beperkte weergave:Callout" id="areadiagram_map_sQHQeEmGAqAEETQ2_default" href="Callout_sQHQeEmGAqAEETQ3.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="139, 2, 257, 74" coords2="139, 2, 257, 74" shape="rect" alt="Mitz:Product" id="areadiagram_map_LHOvuEmGAqAEES8._default" href="ArchiMateProduct_LHOvuEmGAqAEES8_.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','139, 2, 257, 74',new Array(),new Array(),new Array(new Array('https://www.vzvz.nl/diensten/gemeenschappelijke-diensten/mitz','Website VZVZ - Mitz'),new Array('https://www.mitz-toestemming.nl/','Website Mitz'),new Array('https://vzvz.atlassian.net/wiki/spaces/MA11/overview?homepageId=127533060','Mitz afsprakenstelsel')),new Array(),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '139, 2, 257, 74'),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:12px;margin-right:0;font-family:Dialog;margin-left:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+      &amp;#8203;De zorg staat onder druk waardoor de inzet van digitale middelen, zoals 
+      digitale interventies steeds belangrijker wordt. Wanneer een 
+      zorgverlener de mogelijkheid heeft om digitale interventies mee te geven 
+      aan een pati&amp;#235;nt, dan kan deze daar thuis mee aan de slag. Zorg vindt 
+      daardoor niet enkel meer plaats tijdens fysieke consulten maar gaat 
+      tussen die consulten door in digitale vorm. &amp;#8203;Het toepassen van digitale 
+      interventies moet echter geen administratieve last worden. Verregaande 
+      informatie-, en applicatie integratie is noodzakelijk. Interventies 
+      moeten toegankelijk zijn voor zowel zorgverlener als voor pati&amp;#235;nt. &amp;#8203;Door 
+      het toepassen van de Koppeltaal-standaard wordt deze integratie mogelijk.
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="276, 2, 392, 73" coords2="276, 2, 392, 73" shape="rect" alt="Koppeltaal:Product" id="areadiagram_map_im1PuEmGAqAEES7T_default" href="ArchiMateProduct_im1PuEmGAqAEES7U.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','276, 2, 392, 73',new Array(),new Array(),new Array(new Array('https://www.vzvz.nl/diensten/afsprakenstelsels/koppeltaal','Website VZVZ - Koppeltaal'),new Array('https://www.koppeltaal.nl/','Website Koppeltaal'),new Array('https://www.koppeltaal.nl/koppeltaal/documentatie','Koppeltaal documentatie')),new Array(),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '276, 2, 392, 73'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="2, 2, 120, 73" coords2="2, 2, 120, 73" shape="rect" alt="AORTA-LSP:Product" id="areadiagram_map_70VPuEmGAqAEES7J_default" href="ArchiMateProduct_70VPuEmGAqAEES7K.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','2, 2, 120, 73',new Array(),new Array(),new Array(new Array('http://','Website VZVZ - AORTA-LSP')),new Array(),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '2, 2, 120, 73'),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		Testproject	</div>
+</body>
+</html>

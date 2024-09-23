@@ -1,0 +1,285 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>ArchiMate Diagram - Zorgverlening - Aanvullend onderzoek (GGz)</title>
+	<META name="Description" content="Dit domein bevat de activiteiten op het gebied van het doen van intern of extern aanvullend onderzoek ten behoeve van toeleiding of behandeling van de patiënt."/>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		Testproject	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p>
+<a href="Model_Bs1auEmGAqAEEQxe.html" class="PageParentTitle">Generieke architectuur : Model</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_Hfb6uEmGAqAEEQxu.html" class="PageParentTitle">Architectuur : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_G_HTuEmGAqAEEVGm.html" class="PageParentTitle">Business architectuur : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_ap_AeEmGAqAEETJy.html" class="PageParentTitle">Geestelijke gezondheidszorg : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_ez1OuEmGAqAEET5B.html" class="PageParentTitle">Zorgprocessen - Geestelijke gezondheidszorg : Package</a>	</p>
+	<p class="PageTitle">
+<a href="ArchiMateBusinessFunction_s0qVuEmGAqAEET_L.html"><img style="border: 1px solid #C0C0C0; " src="../images/icons/Breadcrumb_JumpToDiagram.png" alt="Referenced by Aanvullend onderzoek"/></a>		<span id="PageTitleText">
+			ArchiMate Diagram - Zorgverlening - Aanvullend onderzoek (GGz)		</span>
+<a onclick="javascript: showVpLink('Testproject.vpp://diagram/knqVuEmGAqAEEUHn', 'Zorgverlening - Aanvullend onderzoek (GGz)\nTestproject.vpp://diagram/knqVuEmGAqAEEUHn', 'Zorgverlening - Aanvullend onderzoek (GGz)', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|48.0|74.0|120.0|80.0|ArchiMateBusinessProcess_kVKVuEmGAqAEET6g.html|ArchiMateBusinessProcess_kVKVuEmGAqAEET6g.html|qnqVuEmGAqAEEUHt" id="optionqnqVuEmGAqAEEUHt">Uitvoeren aanvullend onderzoek : Business Process</option>
+<option value="shape|182.0|74.0|120.0|80.0|ArchiMateBusinessProcess_xDKVuEmGAqAEET7O.html|ArchiMateBusinessProcess_xDKVuEmGAqAEET7O.html|qnqVuEmGAqAEEUHv" id="optionqnqVuEmGAqAEEUHv">Opstellen verslag : Business Process</option>
+<option value="shape|578.0|170.0|120.0|80.0|ArchiMateBusinessObject_JQqVuEmGAqAEET9J.html|ArchiMateBusinessObject_JQqVuEmGAqAEET9J.html|6nqVuEmGAqAEEUHx" id="option6nqVuEmGAqAEEUHx">Beeld : Business Object</option>
+<option value="shape|446.0|170.0|120.0|80.0|ArchiMateBusinessObject_ifKVuEmGAqAEET8q.html|ArchiMateBusinessObject_ifKVuEmGAqAEET8q.html|GnqVuEmGAqAEEUHz" id="optionGnqVuEmGAqAEEUHz">Onderzoeksverslag : Business Object</option>
+<option value="shape|314.0|170.0|120.0|80.0|ArchiMateBusinessObject_nIqVuEmGAqAEET9b.html|ArchiMateBusinessObject_nIqVuEmGAqAEET9b.html|FnqVuEmGAqAEEUH1" id="optionFnqVuEmGAqAEEUH1">Uitslag onderzoek : Business Object</option>
+<option value="shape|182.0|170.0|120.0|80.0|ArchiMateBusinessObject_UfKVuEmGAqAEET8p.html|ArchiMateBusinessObject_UfKVuEmGAqAEET8p.html|lnqVuEmGAqAEEUH3" id="optionlnqVuEmGAqAEEUH3">Onderzoeks materiaal : Business Object</option>
+<option value="shape|48.0|170.0|120.0|80.0|ArchiMateBusinessObject_mHKVuEmGAqAEET79.html|ArchiMateBusinessObject_mHKVuEmGAqAEET79.html|VnqVuEmGAqAEEUH5" id="optionVnqVuEmGAqAEEUH5">Onderzoek : Business Object</option>
+<option value="shape|26.0|38.0|697.0|253.0|ArchiMateBusinessFunction_s0qVuEmGAqAEET_L.html|ArchiMateBusinessFunction_s0qVuEmGAqAEET_L.html|KnqVuEmGAqAEEUHr" id="optionKnqVuEmGAqAEEUHr">Aanvullend onderzoek : Business Function</option>
+<option value="shape|2.0|2.0|745.0|313.0|ArchiMateGrouping_MMqVuEmGAqAEET_S.html|ArchiMateGrouping_MMqVuEmGAqAEET_S.html|KnqVuEmGAqAEEUHp" id="optionKnqVuEmGAqAEEUHp">Referentie Domeinmodel Geestelijkegezondheidszorg v1.0 : Grouping</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/Zorgverlening_Aanvullend_onderzoek_GGz.png" usemap="#diagram_map" class="Image" width="751" height="319"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="-34, -34, 66, 66" coords2="-34, -34, 66, 66" shape="rect" alt=":Access" id="areadiagram_map_4IaVuEmGAqAEEUTY_default" href="ArchiMateAccess_IKqVuEmGAqAEET_R.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-34, -34, 66, 66" coords2="-34, -34, 66, 66" shape="rect" alt=":Access" id="areadiagram_map_4IaVuEmGAqAEEUTa_default" href="ArchiMateAccess_CiqVuEmGAqAEET_6.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-34, -34, 66, 66" coords2="-34, -34, 66, 66" shape="rect" alt=":Composition" id="areadiagram_map_EIaVuEmGAqAEEUTc_default" href="ArchiMateComposition_H9qVuEmGAqAEEUCm.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-34, -34, 66, 66" coords2="-34, -34, 66, 66" shape="rect" alt=":Access" id="areadiagram_map_EIaVuEmGAqAEEUTe_default" href="ArchiMateAccess__6qVuEmGAqAEET_s.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-34, -34, 66, 66" coords2="-34, -34, 66, 66" shape="rect" alt=":Access" id="areadiagram_map_EIaVuEmGAqAEEUTg_default" href="ArchiMateAccess_O8qVuEmGAqAEET_s.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-34, -34, 66, 66" coords2="-34, -34, 66, 66" shape="rect" alt=":Access" id="areadiagram_map_EIaVuEmGAqAEEUTi_default" href="ArchiMateAccess_3SqVuEmGAqAEET_I.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-34, -34, 66, 66" coords2="-34, -34, 66, 66" shape="rect" alt=":Composition" id="areadiagram_map_EIaVuEmGAqAEEUTk_default" href="ArchiMateComposition_R1qVuEmGAqAEEUCE.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-34, -34, 66, 66" coords2="-34, -34, 66, 66" shape="rect" alt=":Composition" id="areadiagram_map_EIaVuEmGAqAEEUTm_default" href="ArchiMateComposition_ROqVuEmGAqAEEUAU.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Op systematische wijze, volgens een bepaalde methodiek of techniek, 
+    verkrijgen van informatie over de lichamelijke of geestelijke gesteldheid. 
+    Het afnemen van menselijk materiaal en het verzamelen van beeldmateriaal 
+    kan hier een onderdeel van zijn. Dit onderzoek kan binnen of buiten de GGZ 
+    instelling plaatsvinden.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="48, 74, 168, 154" coords2="48, 74, 168, 154" shape="rect" alt="Uitvoeren aanvullend onderzoek:Business Process" id="areadiagram_map_qnqVuEmGAqAEEUHt_default" href="ArchiMateBusinessProcess_kVKVuEmGAqAEET6g.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Vastleggen en vrijgeven van het resultaat van (aanvullend) onderzoek.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="182, 74, 302, 154" coords2="182, 74, 302, 154" shape="rect" alt="Opstellen verslag:Business Process" id="areadiagram_map_qnqVuEmGAqAEEUHv_default" href="ArchiMateBusinessProcess_xDKVuEmGAqAEET7O.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Visualisatie van onderdelen van het lichaam verkregen met behulp van 
+    speciale technieken (o.a. r&amp;#246;ntgenstraling, echografie, tomografie).
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="578, 170, 698, 250" coords2="578, 170, 698, 250" shape="rect" alt="Beeld:Business Object" id="areadiagram_map_6nqVuEmGAqAEEUHx_default" href="ArchiMateBusinessObject_JQqVuEmGAqAEET9J.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Met elkaar samenhangende tekst en/of data en/of beelden bestaande uit een 
+    combinatie van aanvraaggegevens, beschrijving van het onderzoeksproces, 
+    ruwe onderzoeksgegevens en beoordeling van deze gegevens met bijbehorende 
+    motivatie.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="446, 170, 566, 250" coords2="446, 170, 566, 250" shape="rect" alt="Onderzoeksverslag:Business Object" id="areadiagram_map_GnqVuEmGAqAEEUHz_default" href="ArchiMateBusinessObject_ifKVuEmGAqAEET8q.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    &amp;quot;Resultaat van uitgevoerd onderzoek. Uitslag kan zijn de ruwe waarde 
+    (uitkomst van meting/onderzoek) en/of hiervan afgeleide interpretatie.&amp;quot;
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="314, 170, 434, 250" coords2="314, 170, 434, 250" shape="rect" alt="Uitslag onderzoek:Business Object" id="areadiagram_map_FnqVuEmGAqAEEUH1_default" href="ArchiMateBusinessObject_nIqVuEmGAqAEET9b.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Alle van het menselijk lichaam afgescheiden cellen/bestanddelen, zoals 
+    weefsel, bloed, sputum, urine, etc. waarop aanvullend onderzoek kan worden 
+    verricht(t.b.v. diagnostiek en behandeling).
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="182, 170, 302, 250" coords2="182, 170, 302, 250" shape="rect" alt="Onderzoeks materiaal:Business Object" id="areadiagram_map_lnqVuEmGAqAEEUH3_default" href="ArchiMateBusinessObject_UfKVuEmGAqAEET8p.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Van een uit te voeren onderzoek wordt o.a. vastgelegd: type onderzoek, te 
+    gebruiken methodiek, materialen, kosten en doorlooptijd.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="48, 170, 168, 250" coords2="48, 170, 168, 250" shape="rect" alt="Onderzoek:Business Object" id="areadiagram_map_VnqVuEmGAqAEEUH5_default" href="ArchiMateBusinessObject_mHKVuEmGAqAEET79.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    Dit domein bevat de activiteiten op het gebied van het doen van intern of 
+    extern aanvullend onderzoek ten behoeve van toeleiding of behandeling van 
+    de pati&amp;#235;nt.
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+" coords="26, 38, 723, 291" coords2="26, 38, 723, 291" shape="rect" alt="Aanvullend onderzoek:Business Function" id="areadiagram_map_KnqVuEmGAqAEEUHr_default" href="ArchiMateBusinessFunction_s0qVuEmGAqAEET_L.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','26, 38, 723, 291',new Array(),new Array(),new Array(),new Array('ArchiMateDiagram_knqVuEmGAqAEEUHn.html/Zorgverlening - Aanvullend onderzoek (GGz)/ArchiMateDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '26, 38, 723, 291'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="2, 2, 747, 315" coords2="2, 2, 747, 315" shape="rect" alt="Referentie Domeinmodel Geestelijkegezondheidszorg v1.0:Grouping" id="areadiagram_map_KnqVuEmGAqAEEUHp_default" href="ArchiMateGrouping_MMqVuEmGAqAEET_S.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<p>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0">
+			<tr>
+				<td>
+<span class="TableContent Documentation"><html>
+  <head>
+    
+  </head>
+  <body>
+    Dit domein bevat de activiteiten op het gebied van het doen van intern of 
+    extern aanvullend onderzoek ten behoeve van toeleiding of behandeling van 
+    de pati&#235;nt.
+  </body>
+</html>
+</span>				</td>
+			</tr>
+		</table>
+	</p>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		Testproject	</div>
+</body>
+</html>

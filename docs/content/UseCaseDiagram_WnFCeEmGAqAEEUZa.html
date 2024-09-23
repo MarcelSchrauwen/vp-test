@@ -1,0 +1,294 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>Use Case Diagram - Registreren zorgaanbieder domein [KT.UC.101]</title>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		Testproject	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p>
+<a href="Model_g446uEmGAqAEEQxl.html" class="PageParentTitle">Specifieke architectuur : Model</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Model_rbHOuEmGAqAEET5I.html" class="PageParentTitle">Koppeltaal : Model</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_EwWceEmGAqAEEUVp.html" class="PageParentTitle">Ontwerp : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_S818eEmGAqAEEUXr.html" class="PageParentTitle">Functoinaliteit : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package_Ugd8eEmGAqAEEUX0.html" class="PageParentTitle">Registreren zorgaanbieder domein : Package</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Package__bMCeEmGAqAEEUYv.html" class="PageParentTitle">Use case : Package</a>	</p>
+	<p class="PageTitle">
+<a href="BPTask_qQ38eEmGAqAEEUYW.html"><img style="border: 1px solid #C0C0C0; " src="../images/icons/Breadcrumb_JumpToDiagram.png" alt="Referenced by Registreren zorgaanbieder domein [KT.UC.101]"/></a>		<span id="PageTitleText">
+			Use Case Diagram - Registreren zorgaanbieder domein [KT.UC.101]		</span>
+<a onclick="javascript: showVpLink('Testproject.vpp://diagram/WnFCeEmGAqAEEUZa', 'Registreren zorgaanbieder domein [KT.UC.101]\nTestproject.vpp://diagram/WnFCeEmGAqAEEUZa', 'Registreren zorgaanbieder domein [KT.UC.101]', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|220.0|2.0|200.0|194.0|System_mV8ieEmGAqAEEUcE.html|System_mV8ieEmGAqAEEUcE.html|aV8ieEmGAqAEEUcD" id="optionaV8ieEmGAqAEEUcD">Stelsel register Koppeltaal voorziening : System</option>
+<option value="shape|44.0|70.0|30.0|60.0|Actor_PC0ieEmGAqAEEUbx.html|Actor_PC0ieEmGAqAEEUbx.html|PC0ieEmGAqAEEUbw" id="optionPC0ieEmGAqAEEUbw">Systeembeheerder Koppeltaal voorziening : Actor</option>
+<option value="shape|249.0|70.0|142.0|89.0|UseCase_rPSieEmGAqAEEUcK.html|UseCase_rPSieEmGAqAEEUcK.html|rPSieEmGAqAEEUcJ" id="optionrPSieEmGAqAEEUcJ">Registreren zorgaanbieder domein [KT.UC.101] : Use Case</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/Registreren_zorgaanbieder_domein_KTUC101.png" usemap="#diagram_map" class="Image" width="424" height="200"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="74.0, 100.0, 74.0, 114.0, 249.0, 114.0, 249.0, 100.0" coords2="74.0, 100.0, 74.0, 114.0, 249.0, 114.0, 249.0, 100.0" shape="poly" alt=":Association" id="areadiagram_map_w0RieEmGAqAEEUdn_default" href="Association_xURieEmGAqAEEUdg.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:12px;margin-right:0;font-family:Dialog;margin-left:0;&amp;quot;&amp;gt;
+    &amp;lt;table border-spacing=&amp;quot;0px&amp;quot; style=&amp;quot;border-right-style:solid;border-top-width:1px;border-bottom-color:#888888;border-left-style:solid;border-right-width:1px;border-left-color:#888888;border-bottom-width:1px;border-top-color:#888888;border-bottom-style:solid;border-right-color:#888888;border-left-width:1px;border-top-style:solid;&amp;quot; width=&amp;quot;839&amp;quot;&amp;gt;
+      &amp;lt;tr style=&amp;quot;text-align:left;&amp;quot;&amp;gt;
+        &amp;lt;td style=&amp;quot;border-right-style:solid;border-top-width:1px;border-bottom-color:#888888;border-right-width:1px;padding-left:3;border-left-color:#888888;padding-right:3;border-right-color:#888888;border-left-width:1px;border-top-style:solid;padding-bottom:3;padding-top:3;border-left-style:solid;border-bottom-width:1px;border-top-color:#888888;border-bottom-style:solid;&amp;quot; width=&amp;quot;205&amp;quot;&amp;gt;
+          &amp;lt;span bgcolor=&amp;quot;#ffffff&amp;quot; style=&amp;quot;background-color:#ffffff;&amp;quot;&amp;gt;Naam &amp;lt;/span&amp;gt;
+        &amp;lt;/td&amp;gt;
+        &amp;lt;td style=&amp;quot;border-right-style:solid;border-top-width:1px;border-bottom-color:#888888;border-right-width:1px;padding-left:3;border-left-color:#888888;padding-right:3;border-right-color:#888888;border-left-width:1px;border-top-style:solid;padding-bottom:3;padding-top:3;border-left-style:solid;border-bottom-width:1px;border-top-color:#888888;border-bottom-style:solid;&amp;quot; width=&amp;quot;634&amp;quot;&amp;gt;
+          Registreren zorgaanbieder domein.
+        &amp;lt;/td&amp;gt;
+      &amp;lt;/tr&amp;gt;
+      &amp;lt;tr style=&amp;quot;text-align:left;&amp;quot;&amp;gt;
+        &amp;lt;td style=&amp;quot;border-right-style:solid;border-top-width:1px;border-bottom-color:#888888;border-right-width:1px;padding-left:3;border-left-color:#888888;padding-right:3;border-right-color:#888888;border-left-width:1px;border-top-style:solid;padding-bottom:3;padding-top:3;border-left-style:solid;border-bottom-width:1px;border-top-color:#888888;border-bottom-style:solid;&amp;quot; width=&amp;quot;205&amp;quot;&amp;gt;
+          &amp;lt;span bgcolor=&amp;quot;#ffffff&amp;quot; style=&amp;quot;background-color:#ffffff;&amp;quot;&amp;gt;ID &amp;lt;/span&amp;gt;
+        &amp;lt;/td&amp;gt;
+        &amp;lt;td style=&amp;quot;border-right-style:solid;border-top-width:1px;border-bottom-color:#888888;border-right-width:1px;padding-left:3;border-left-color:#888888;padding-right:3;border-right-color:#888888;border-left-width:1px;border-top-style:solid;padding-bottom:3;padding-top:3;border-left-style:solid;border-bottom-width:1px;border-top-color:#888888;border-bottom-style:solid;&amp;quot; width=&amp;quot;634&amp;quot;&amp;gt;
+          KT.UC.101
+        &amp;lt;/td&amp;gt;
+      &amp;lt;/tr&amp;gt;
+      &amp;lt;tr style=&amp;quot;text-align:left;&amp;quot;&amp;gt;
+        &amp;lt;td style=&amp;quot;border-right-style:solid;border-top-width:1px;border-bottom-color:#888888;border-right-width:1px;padding-left:3;border-left-color:#888888;padding-right:3;border-right-color:#888888;border-left-width:1px;border-top-style:solid;padding-bottom:3;padding-top:3;border-left-style:solid;border-bottom-width:1px;border-top-color:#888888;border-bottom-style:solid;&amp;quot; width=&amp;quot;205&amp;quot;&amp;gt;
+          &amp;lt;span bgcolor=&amp;quot;#ffffff&amp;quot; style=&amp;quot;background-color:#ffffff;&amp;quot;&amp;gt;Actor(en) &amp;lt;/span&amp;gt;
+        &amp;lt;/td&amp;gt;
+        &amp;lt;td style=&amp;quot;border-right-style:solid;border-top-width:1px;border-bottom-color:#888888;border-right-width:1px;padding-left:3;border-left-color:#888888;padding-right:3;border-right-color:#888888;border-left-width:1px;border-top-style:solid;padding-bottom:3;padding-top:3;border-left-style:solid;border-bottom-width:1px;border-top-color:#888888;border-bottom-style:solid;&amp;quot; width=&amp;quot;634&amp;quot;&amp;gt;
+          &amp;lt;a class=&amp;quot;ItemLink&amp;quot; href=&amp;quot;Actor_PC0ieEmGAqAEEUbx.html&amp;quot;&amp;gt;Systeembeheerder 
+          Koppeltaal voorziening&amp;lt;/a&amp;gt;
+        &amp;lt;/td&amp;gt;
+      &amp;lt;/tr&amp;gt;
+      &amp;lt;tr style=&amp;quot;text-align:left;&amp;quot;&amp;gt;
+        &amp;lt;td style=&amp;quot;border-right-style:solid;border-top-width:1px;border-bottom-color:#888888;border-right-width:1px;padding-left:3;border-left-color:#888888;padding-right:3;border-right-color:#888888;border-left-width:1px;border-top-style:solid;padding-bottom:3;padding-top:3;border-left-style:solid;border-bottom-width:1px;border-top-color:#888888;border-bottom-style:solid;&amp;quot; width=&amp;quot;205&amp;quot;&amp;gt;
+          &amp;lt;span bgcolor=&amp;quot;#ffffff&amp;quot; style=&amp;quot;background-color:#ffffff;&amp;quot;&amp;gt;Voorwaarden 
+          &amp;lt;/span&amp;gt;
+        &amp;lt;/td&amp;gt;
+        &amp;lt;td style=&amp;quot;border-right-style:solid;border-top-width:1px;border-bottom-color:#888888;border-right-width:1px;padding-left:3;border-left-color:#888888;padding-right:3;border-right-color:#888888;border-left-width:1px;border-top-style:solid;padding-bottom:3;padding-top:3;border-left-style:solid;border-bottom-width:1px;border-top-color:#888888;border-bottom-style:solid;&amp;quot; width=&amp;quot;634&amp;quot;&amp;gt;
+          &amp;lt;p style=&amp;quot;margin-top:0;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+            &amp;nbsp;
+          &amp;lt;/p&amp;gt;
+          &amp;lt;ul class=&amp;quot;disc&amp;quot; margin-left-ltr=&amp;quot;50&amp;quot; margin-right-rtl=&amp;quot;50&amp;quot; style=&amp;quot;list-style-type:none;margin-top:0px;margin-bottom:0px;margin-left:40pt;&amp;quot;&amp;gt;
+            &amp;lt;li style=&amp;quot;margin-top:0;margin-bottom:0;margin-right:0;margin-left:0;&amp;quot;&amp;gt;
+              Het zorgaanbieder domein moet aangevraagd zijn door een 
+              zorgaanbieder die lid is van de Koppeltaal community.
+            &amp;lt;/li&amp;gt;
+            &amp;lt;li style=&amp;quot;margin-top:0;margin-bottom:0;margin-right:0;margin-left:0;&amp;quot;&amp;gt;
+              De systeembeheerder is ingelogd in het beheerscherm van de 
+              Koppeltaal voorziening (stelselregister)
+            &amp;lt;/li&amp;gt;
+          &amp;lt;/ul&amp;gt;
+          &amp;lt;p style=&amp;quot;margin-top:0;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+            &amp;nbsp;
+          &amp;lt;/p&amp;gt;
+          &amp;lt;p style=&amp;quot;margin-top:0;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+            &amp;nbsp;
+          &amp;lt;/p&amp;gt;
+        &amp;lt;/td&amp;gt;
+      &amp;lt;/tr&amp;gt;
+      &amp;lt;tr style=&amp;quot;text-align:left;&amp;quot;&amp;gt;
+        &amp;lt;td style=&amp;quot;border-right-style:solid;border-top-width:1px;border-bottom-color:#888888;border-right-width:1px;padding-left:3;border-left-color:#888888;padding-right:3;border-right-color:#888888;border-left-width:1px;border-top-style:solid;padding-bottom:3;padding-top:3;border-left-style:solid;border-bottom-width:1px;border-top-color:#888888;border-bottom-style:solid;&amp;quot; width=&amp;quot;205&amp;quot;&amp;gt;
+          &amp;lt;span bgcolor=&amp;quot;#ffffff&amp;quot; style=&amp;quot;background-color:#ffffff;&amp;quot;&amp;gt;Stakeholder 
+          requirement &amp;lt;/span&amp;gt;
+        &amp;lt;/td&amp;gt;
+        &amp;lt;td style=&amp;quot;border-right-style:solid;border-top-width:1px;border-bottom-color:#888888;border-right-width:1px;padding-left:3;border-left-color:#888888;padding-right:3;border-right-color:#888888;border-left-width:1px;border-top-style:solid;padding-bottom:3;padding-top:3;border-left-style:solid;border-bottom-width:1px;border-top-color:#888888;border-bottom-style:solid;&amp;quot; width=&amp;quot;634&amp;quot;&amp;gt;
+          Als zorgaanbieder wil ik dat de systeembeheerder van de Koppeltaal 
+          voorziening een domein voor mijn organisatie aanmaakt. Dit domein 
+          heb ik nodig om gebruik te kunnen maken van Koppeltaal 
+          functionaliteit.
+        &amp;lt;/td&amp;gt;
+      &amp;lt;/tr&amp;gt;
+      &amp;lt;tr style=&amp;quot;text-align:left;&amp;quot;&amp;gt;
+        &amp;lt;td style=&amp;quot;border-right-style:solid;border-top-width:1px;border-bottom-color:#888888;border-right-width:1px;padding-left:3;border-left-color:#888888;padding-right:3;border-right-color:#888888;border-left-width:1px;border-top-style:solid;padding-bottom:3;padding-top:3;border-left-style:solid;border-bottom-width:1px;border-top-color:#888888;border-bottom-style:solid;&amp;quot; width=&amp;quot;205&amp;quot;&amp;gt;
+          &amp;lt;span bgcolor=&amp;quot;#ffffff&amp;quot; style=&amp;quot;background-color:#ffffff;&amp;quot;&amp;gt;Beschrijving 
+          in stappen &amp;lt;/span&amp;gt;
+        &amp;lt;/td&amp;gt;
+        &amp;lt;td style=&amp;quot;border-right-style:solid;border-top-width:1px;border-bottom-color:#888888;border-right-width:1px;padding-left:3;border-left-color:#888888;padding-right:3;border-right-color:#888888;border-left-width:1px;border-top-style:solid;padding-bottom:3;padding-top:3;border-left-style:solid;border-bottom-width:1px;border-top-color:#888888;border-bottom-style:solid;&amp;quot; width=&amp;quot;634&amp;quot;&amp;gt;
+          &amp;lt;p style=&amp;quot;margin-top:0;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+            &amp;nbsp;
+          &amp;lt;/p&amp;gt;
+          &amp;lt;ol class=&amp;quot;decimal&amp;quot; margin-left-ltr=&amp;quot;50&amp;quot; margin-right-rtl=&amp;quot;50&amp;quot; style=&amp;quot;list-style-type:none;margin-top:0px;margin-bottom:0px;margin-left:40pt;&amp;quot;&amp;gt;
+            &amp;lt;li style=&amp;quot;margin-top:0;margin-bottom:0;margin-right:0;margin-left:0;&amp;quot;&amp;gt;
+              Het zorgaanbieder domein wordt geregistreerd via het 
+              beheerscherm van het stelselregister.
+            &amp;lt;/li&amp;gt;
+            &amp;lt;li data-renderer-start-pos=&amp;quot;892&amp;quot; style=&amp;quot;margin-top:0;margin-bottom:0;margin-right:0;margin-left:0;&amp;quot;&amp;gt;
+              Vanuit het stelselregister wordt de FHIR opslag voor het domein 
+              aangemaakt in de FHIR store.
+            &amp;lt;/li&amp;gt;
+            &amp;lt;li data-renderer-start-pos=&amp;quot;988&amp;quot; style=&amp;quot;margin-top:0;margin-bottom:0;margin-right:0;margin-left:0;&amp;quot;&amp;gt;
+              Vanuit het stelselregister wordt de &amp;lt;mark aria-disabled=&amp;quot;true&amp;quot; class=&amp;quot;cc-ynfe6l&amp;quot; data-has-focus=&amp;quot;false&amp;quot; data-id=&amp;quot;fe99110c-72ed-4ca3-a93f-7b2d01d19b41&amp;quot; data-mark-annotation-state=&amp;quot;resolved&amp;quot; data-mark-annotation-type=&amp;quot;inlineComment&amp;quot; data-mark-type=&amp;quot;annotation&amp;quot; data-renderer-mark=&amp;quot;true&amp;quot; id=&amp;quot;fe99110c-72ed-4ca3-a93f-7b2d01d19b41&amp;quot;&amp;gt;autorisatie 
+              instantie &amp;lt;/mark&amp;gt;voor het domein aangemaakt in de autorisatie 
+              server.&amp;nbsp;
+            &amp;lt;/li&amp;gt;
+          &amp;lt;/ol&amp;gt;
+          &amp;lt;p style=&amp;quot;margin-top:0;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+            &amp;nbsp;
+          &amp;lt;/p&amp;gt;
+        &amp;lt;/td&amp;gt;
+      &amp;lt;/tr&amp;gt;
+      &amp;lt;tr style=&amp;quot;text-align:left;&amp;quot;&amp;gt;
+        &amp;lt;td style=&amp;quot;border-right-style:solid;border-top-width:1px;border-bottom-color:#888888;border-right-width:1px;padding-left:3;border-left-color:#888888;padding-right:3;border-right-color:#888888;border-left-width:1px;border-top-style:solid;padding-bottom:3;padding-top:3;border-left-style:solid;border-bottom-width:1px;border-top-color:#888888;border-bottom-style:solid;&amp;quot; width=&amp;quot;205&amp;quot;&amp;gt;
+          &amp;lt;span bgcolor=&amp;quot;#ffffff&amp;quot; style=&amp;quot;background-color:#ffffff;&amp;quot;&amp;gt;Uitzonderingen 
+          &amp;lt;/span&amp;gt;
+        &amp;lt;/td&amp;gt;
+        &amp;lt;td style=&amp;quot;border-right-style:solid;border-top-width:1px;border-bottom-color:#888888;border-right-width:1px;padding-left:3;border-left-color:#888888;padding-right:3;border-right-color:#888888;border-left-width:1px;border-top-style:solid;padding-bottom:3;padding-top:3;border-left-style:solid;border-bottom-width:1px;border-top-color:#888888;border-bottom-style:solid;&amp;quot; width=&amp;quot;634&amp;quot;&amp;gt;
+          Het kan voorkomen dat een applicatiebeheerder (leverancier) een 
+          zorgaanbieder domein aanvraagt ten behoeve van ontwikkelwerk. In dit 
+          geval kan ook een leverancier een zorgaanbieder domein toegewezen 
+          krijgen - dit zal echter altijd een domein in een ontwikkelomgeving 
+          betreffen.
+        &amp;lt;/td&amp;gt;
+      &amp;lt;/tr&amp;gt;
+      &amp;lt;tr style=&amp;quot;text-align:left;&amp;quot;&amp;gt;
+        &amp;lt;td style=&amp;quot;border-right-style:solid;border-top-width:1px;border-bottom-color:#888888;border-right-width:1px;padding-left:3;border-left-color:#888888;padding-right:3;border-right-color:#888888;border-left-width:1px;border-top-style:solid;padding-bottom:3;padding-top:3;border-left-style:solid;border-bottom-width:1px;border-top-color:#888888;border-bottom-style:solid;&amp;quot; width=&amp;quot;205&amp;quot;&amp;gt;
+          &amp;lt;span bgcolor=&amp;quot;#ffffff&amp;quot; style=&amp;quot;background-color:#ffffff;&amp;quot;&amp;gt;Resultaat &amp;lt;/span&amp;gt;
+        &amp;lt;/td&amp;gt;
+        &amp;lt;td style=&amp;quot;border-right-style:solid;border-top-width:1px;border-bottom-color:#888888;border-right-width:1px;padding-left:3;border-left-color:#888888;padding-right:3;border-right-color:#888888;border-left-width:1px;border-top-style:solid;padding-bottom:3;padding-top:3;border-left-style:solid;border-bottom-width:1px;border-top-color:#888888;border-bottom-style:solid;&amp;quot; width=&amp;quot;634&amp;quot;&amp;gt;
+          De zorgaanbieder beschikt na registratie van het zorgaanbieder 
+          domein over eigen afgeschermde plek om gegevens uit te wisselen. 
+          Gegevensuitwisseling die beperkt is tot wat nodig is voor Koppeltaal.
+        &amp;lt;/td&amp;gt;
+      &amp;lt;/tr&amp;gt;
+    &amp;lt;/table&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+      &amp;nbsp;
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="249, 70, 391, 159" coords2="249, 70, 391, 159" shape="rect" alt="Registreren zorgaanbieder domein [KT.UC.101]:Use Case" id="areadiagram_map_rPSieEmGAqAEEUcJ_default" href="UseCase_rPSieEmGAqAEEUcK.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','249, 70, 391, 159',new Array(),new Array(),new Array(),new Array('ClassDiagram_BD7CeEmGAqAEEUaJ.html/Registreren zorgaanbieder domein [KT.UC.101]/ClassDiagram','InteractionDiagram_cRjCeEmGAqAEEUZx.html/Registreren zorgaanbieder domein [KT.UC.101]/InteractionDiagram'),new Array(),new Array(),new Array(),new Array(),new Array()),showReferenceIcon('diagram', '249, 70, 391, 159'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="220, 2, 420, 196" coords2="220, 2, 420, 196" shape="rect" alt="Stelsel register Koppeltaal voorziening:System" id="areadiagram_map_aV8ieEmGAqAEEUcD_default" href="System_mV8ieEmGAqAEEUcE.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="44, 70, 74, 130" coords2="44, 70, 74, 130" shape="rect" alt="Systeembeheerder Koppeltaal voorziening:Actor" id="areadiagram_map_PC0ieEmGAqAEEUbw_default" href="Actor_PC0ieEmGAqAEEUbx.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		Testproject	</div>
+</body>
+</html>
